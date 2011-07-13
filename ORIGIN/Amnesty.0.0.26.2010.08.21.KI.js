@@ -1,0 +1,73 @@
+//Amnesty.0.0.26.2010.08.21.KI.js
+alert((
+	'°Amnesty.0.0.26.2010.08.21.KI.js°:'
+	+'\n++\t'
+	+'\n++\t'
+	+'\n++\t'
+));
+
+KI
+=
+function
+(
+
+)
+{
+	/*
+	for
+	(
+		var i=0;
+		i<dieGegnerAnzahl;
+		i++
+	)
+	*/
+	for
+	(
+		dieser
+		in
+		dieGegner
+	)
+	{
+		/*
+		var
+		vari
+		=
+			''
+			+'window.setInterval(\''
+			+'G'
+			+
+			(
+				i
+				+
+				1
+			)
+			+'.'
+			+'KI()\',4000)'
+		;
+		eval
+		(vari);
+		*/
+		window.setInterval('dieGegner[dieser].KI()',4000);
+
+		/*
+		var
+		vari2
+		=
+			''
+			+'window.setInterval(\''
+			+'G'
+			+
+			(
+				i
+				+1
+			)
+			+'.'
+			+'KIdir()\',200)'
+		;
+		eval
+		(vari2)
+		;
+		*/
+		window.setInterval('dieGegner[dieser].KIdir()',200);
+	}
+}

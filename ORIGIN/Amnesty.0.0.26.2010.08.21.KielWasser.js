@@ -1,0 +1,119 @@
+//Amnesty.0.0.26.2010.08.21.KielWasser.js
+alert((
+	'°Amnesty.0.0.26.2010.08.21.KielWasser.js°:'
+	+'\n++\t'
+	+'\n++\t'
+	+'\n++\t'
+));
+
+C.KielWasser={};
+C.KielWasser.Variable={};
+C.KielWasser.Variable.Laenge=20;
+
+function
+Kielwasser
+(
+)
+{
+	for
+	(
+		dieser
+		in
+		dieGegner
+	)
+	{
+		var
+		id
+		=
+			'KielWasser'
+			+
+			(
+				dieser
+			)
+			.toString()
+		;
+
+		FootPrint
+		(
+			id
+			,
+			KielWasserCounter
+			,
+			dieGegner[dieser]
+		);
+	}
+
+	FootPrint
+	(
+		'KielWasserPlayer'
+		,
+		KielWasserCounter
+		,
+		player
+	);
+
+	KielWasserCounter++;
+
+	if
+	(
+		KielWasserCounter
+		==
+		C.KielWasser.Variable.Laenge
+	)
+	{
+		KielWasserCounter
+		=
+			0
+		;
+	}
+}
+
+function
+FootPrint
+(
+	that
+	,
+	much
+	,
+	from
+)
+{
+	var
+	id
+	=
+		that
+		.toString
+		()
+		+much
+		.toString
+		()
+	;
+	$
+	(id)
+	.style
+	.left
+	=
+		(
+			from
+			.xActual
+			*
+			FeldGroesse
+		)
+		+66
+		+'px'
+	;
+	$
+	(id)
+	.style
+	.top
+	=
+		(
+			from
+			.yActual
+			*
+			FeldGroesse
+		)
+		+56
+		+'px'
+	;
+}

@@ -1,0 +1,80 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE sitesettings SYSTEM "sitesettings.dtd">
+<!--Adobe GoLive settings file-->
+<sitesettings section="colortab" version="1.0">
+	<attributes>
+		<attribute name="dataVersion" value="2"/>
+		<list name="entries">
+			<item>
+				<attribute name="unfolded" value="yes"/>
+				<attribute name="url" value="siteEntry://colors/Used%2520Swatches/"/>
+				<attribute name="urlU" value="siteEntry://colors/Used Swatches/"/>
+			</item>
+			<item>
+				<attribute name="rgb" value="#000000"/>
+				<attribute name="url" value="siteEntry://colors/Used%2520Swatches/black"/>
+				<attribute name="urlU" value="siteEntry://colors/Used Swatches/black"/>
+			</item>
+			<item>
+				<attribute name="rgb" value="#0000ff"/>
+				<attribute name="url" value="siteEntry://colors/Used%2520Swatches/blue"/>
+				<attribute name="urlU" value="siteEntry://colors/Used Swatches/blue"/>
+			</item>
+			<item>
+				<attribute name="rgb" value="#008000"/>
+				<attribute name="url" value="siteEntry://colors/Used%2520Swatches/green"/>
+				<attribute name="urlU" value="siteEntry://colors/Used Swatches/green"/>
+			</item>
+			<item>
+				<attribute name="rgb" value="#00ff00"/>
+				<attribute name="url" value="siteEntry://colors/Used%2520Swatches/lime"/>
+				<attribute name="urlU" value="siteEntry://colors/Used Swatches/lime"/>
+			</item>
+			<item>
+				<attribute name="rgb" value="#000080"/>
+				<attribute name="url" value="siteEntry://colors/Used%2520Swatches/navy"/>
+				<attribute name="urlU" value="siteEntry://colors/Used Swatches/navy"/>
+			</item>
+			<item>
+				<attribute name="rgb" value="#4aff26"/>
+				<attribute name="url" value="siteEntry://colors/Used%2520Swatches/untitled%2520color"/>
+				<attribute name="urlU" value="siteEntry://colors/Used Swatches/untitled color"/>
+			</item>
+			<item>
+				<attribute name="rgb" value="#7fffff"/>
+				<attribute name="url" value="siteEntry://colors/Used%2520Swatches/untitled%2520color1"/>
+				<attribute name="urlU" value="siteEntry://colors/Used Swatches/untitled color1"/>
+			</item>
+			<item>
+				<attribute name="rgb" value="#8cff75"/>
+				<attribute name="url" value="siteEntry://colors/Used%2520Swatches/untitled%2520color2"/>
+				<attribute name="urlU" value="siteEntry://colors/Used Swatches/untitled color2"/>
+			</item>
+			<item>
+				<attribute name="rgb" value="#aeff9e"/>
+				<attribute name="url" value="siteEntry://colors/Used%2520Swatches/untitled%2520color3"/>
+				<attribute name="urlU" value="siteEntry://colors/Used Swatches/untitled color3"/>
+			</item>
+			<item>
+				<attribute name="rgb" value="#ff1414"/>
+				<attribute name="url" value="siteEntry://colors/Used%2520Swatches/untitled%2520color4"/>
+				<attribute name="urlU" value="siteEntry://colors/Used Swatches/untitled color4"/>
+			</item>
+			<item>
+				<attribute name="rgb" value="#ff6868"/>
+				<attribute name="url" value="siteEntry://colors/Used%2520Swatches/untitled%2520color5"/>
+				<attribute name="urlU" value="siteEntry://colors/Used Swatches/untitled color5"/>
+			</item>
+			<item>
+				<attribute name="rgb" value="#ff9e9e"/>
+				<attribute name="url" value="siteEntry://colors/Used%2520Swatches/untitled%2520color6"/>
+				<attribute name="urlU" value="siteEntry://colors/Used Swatches/untitled color6"/>
+			</item>
+			<item>
+				<attribute name="rgb" value="#ffffff"/>
+				<attribute name="url" value="siteEntry://colors/Used%2520Swatches/white"/>
+				<attribute name="urlU" value="siteEntry://colors/Used Swatches/white"/>
+			</item>
+		</list>
+	</attributes>
+</sitesettings>
