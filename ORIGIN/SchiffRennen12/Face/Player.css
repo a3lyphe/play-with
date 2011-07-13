@@ -1,0 +1,16 @@
+#thePlayer{
+position:absolute;
+z-index:3;
+height:60px;
+width:60px;
+}#theGegner1{
+position:absolute;
+z-index:3;
+height:60px;
+width:60px;
+}#theGegner2{
+position:absolute;
+z-index:3;
+height:60px;
+width:60px;
+}

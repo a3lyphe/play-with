@@ -1,0 +1,15 @@
+div#minimapcontainer {
+position:absolute;
+height:96px;
+width:128px;
+z-index:1000;
+bottom:0;
+left:224px;
+}
+canvas#minimap {
+ position : absolute;
+ background-color:navy;
+}
+canvas#minimapobjects {
+ position : absolute;
+}

@@ -1,0 +1,18 @@
+div#theWelt {
+/*display:none;*/
+position:fixed;
+height:96px;
+width:256px;
+z-index:1000;
+bottom:10;
+left:10px;
+background-color:transparent;
+}
+canvas#theMapsBackGround{
+position:absolute;
+background-color:transparent;
+}
+canvas#theMapsPlayGround{
+position:absolute;
+background-color:transparent;
+}

@@ -1,0 +1,1129 @@
+
+<!-- saved from url=(0060)http://devfiles.myopera.com/articles/580/2dmap_collision.htm -->
+<HTML><HEAD><META http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
+<TITLE>Jurte300</TITLE>
+
+
+<STYLE>
+body{
+background-image:url('boden.rot.png');
+overflow:hidden;
+}
+#MyDiv{
+z-index:3;
+}
+#MyDiv2{
+z-index:3;
+}
+#boden{
+position:absolute;
+bottom:0;
+left:0;
+height:60;
+width:100%;
+background-image:url('ReifenWaagerechtUnten.png');
+}
+#decke{
+position:absolute;
+top:0;
+left:0;
+height:60;
+width:100%;
+background-image:url('ReifenWaagerechtOben.png');
+}
+#links{
+position:absolute;
+top:0;
+left:0;
+height:100%;
+width:60;
+background-image:url('ReifenSenkrechtLinks.png');
+}
+#rechts{
+position:absolute;
+top:0;
+right:0;
+height:100%;
+width:60;
+background-image:url('ReifenSenkrechtRechts.png');
+}
+#Strecke{
+position:absolute;
+top:65;
+left:60;
+height:750;
+width:1000;
+background-image:url('Strecke.png');
+}
+#ReifenBlockade{
+position:absolute;
+top:555;
+left:270;
+height:45;
+width:36;
+background-image:url('ReifenBlockade.png');
+}
+#ReifenBlockade2{
+position:absolute;
+top:545;
+left:880;
+height:45;
+width:36;
+background-image:url('ReifenBlockade.png');
+}
+#ReifenBlockade3{
+position:absolute;
+top:250;
+left:250;
+height:45;
+width:36;
+background-image:url('ReifenBlockade.png');
+}
+#ReifenBlockade4{
+position:absolute;
+top:235;
+left:770;
+height:45;
+width:36;
+background-image:url('ReifenBlockade.png');
+}
+div#minimapcontainer {
+	
+}
+canvas#minimap {
+ position : absolute;
+ background-color:navy;
+}
+canvas#minimapobjects {
+ position : absolute;
+}
+
+
+</STYLE>
+<SCRIPT src="./JavaScript Wolfenstein 3D Engine - Player movement + collision_files/excanvas.js" type="text/javascript"></SCRIPT>
+
+</HEAD><BODY onLoad="Animation()">
+
+<DIV id="minimapcontainer" style="width: 576px; height: 384px; ">
+<CANVAS id="minimap" width="576" height="384" style="width: 576px; height: 384px; "></CANVAS>
+<CANVAS id="minimapobjects" width="576" height="384" style="width: 576px; height: 384px; "></CANVAS>
+</DIV>
+
+<SCRIPT type="text/javascript">
+
+var $ = function(id) { return document.getElementById(id); };
+var dc = function(tag) { return document.createElement(tag); };
+
+var map = [
+
+
+
+	[1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1],
+	[1,0,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1],
+	[1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1],
+	[1,0,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1],
+	[1,0,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1],
+	[1,0,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1],
+	[1,0,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1],
+	[1,0,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1],
+	[1,0,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1],
+	[1,0,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1],
+	[1,0,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1],
+	[1,0,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1],
+	[1,0,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,1,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1],
+	[1,0,1,0,0,0,0,0,0,0,0,0,0,1,1,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,1,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1],
+	[1,0,1,0,0,0,0,0,0,0,0,0,0,1,0,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,1,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1],
+	[1,0,1,0,0,0,0,0,0,0,0,0,0,1,1,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1],
+	[1,0,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1],
+	[1,0,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1],
+	[1,0,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1],
+	[1,0,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1],
+	[1,0,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1],
+	[1,0,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1],
+	[1,0,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1],
+	[1,0,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1],
+	[1,0,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1],
+	[1,0,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1],
+	[1,0,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1],
+	[1,0,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1],
+	[1,0,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1],
+	[1,0,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1],
+	[1,0,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1],
+	[1,0,1,0,0,0,0,0,0,0,0,0,0,0,1,1,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,1,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1],
+	[1,0,1,0,0,0,0,0,0,0,0,0,0,0,1,1,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,1,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1],
+	[1,0,1,0,0,0,0,0,0,0,0,0,0,0,1,1,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,1,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1],
+	[1,0,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1],
+	[1,0,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1],
+	[1,0,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1],
+	[1,0,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1],
+	[1,0,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1],
+	[1,0,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1],
+	[1,0,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1],
+	[1,0,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1],
+	[1,0,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1],
+	[1,0,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1],
+	[1,0,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1],
+	[1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1],
+	[1,0,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1],
+	[1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1]
+];
+
+var player = {
+	x : 16,			// current x, y position
+	y : 10,
+	dir : 0,		// the direction that the player is turning, either -1 for left or 1 for right.
+	rot : 0,		// the current angle of rotation
+	speed : 0,		// is the playing moving forward (speed = 1) or backwards (speed = -1).
+	moveSpeed : 0.16,	// how far (in map units) does the player move each step/update
+	rotSpeed : 6		// how much does the player rotate each step/update (in degrees)
+}
+var player2 = {
+	x : 16,			// current x, y position
+	y : 10,
+	dir : 0,		// the direction that the player is turning, either -1 for left or 1 for right.
+	rot : 0,		// the current angle of rotation
+	speed : 0,		// is the playing moving forward (speed = 1) or backwards (speed = -1).
+	moveSpeed : 0.16,	// how far (in map units) does the player move each step/update
+	rotSpeed : 6		// how much does the player rotate each step/update (in degrees)
+}
+var mapWidth = 0;
+var mapHeight = 0;
+
+var miniMapScale = 0.01;
+
+function init() {
+
+	mapWidth = map[0].length;
+	mapHeight = map.length;
+
+	bindKeys();
+
+
+	drawMiniMap();
+
+	gameCycle();
+}
+function moveDiv(){
+document.getElementById("MyDiv").style.left=(player.x*17)+'px';
+document.getElementById("MyDiv").style.top=(player.y*17)+'px';
+document.getElementById("MyDiv2").style.left=(player2.x*17)+'px';
+document.getElementById("MyDiv2").style.top=(player2.y*17)+'px';
+
+}
+
+function Animation(){
+
+var b = new Array();
+b[0] = new Image(); b[0].src = "0.gif";
+b[1] = new Image(); b[1].src = "6.gif";
+b[2] = new Image(); b[2].src = "12.gif";
+b[3] = new Image(); b[3].src = "18.gif";
+b[4] = new Image(); b[4].src = "24.gif";
+b[5] = new Image(); b[5].src = "30.gif";
+b[6] = new Image(); b[6].src = "36.gif";
+b[7] = new Image(); b[7].src = "42.gif";
+b[8] = new Image(); b[8].src = "48.gif";
+b[9] = new Image(); b[9].src = "54.gif";
+b[10] = new Image(); b[10].src = "60.gif";
+b[11] = new Image(); b[11].src = "66.gif";
+b[12] = new Image(); b[12].src = "72.gif";
+b[13] = new Image(); b[13].src = "78.gif";
+b[14] = new Image(); b[14].src = "84.gif";
+b[15] = new Image(); b[15].src = "90.gif";
+b[16] = new Image(); b[16].src = "96.gif";
+b[17] = new Image(); b[17].src = "102.gif";
+b[18] = new Image(); b[18].src = "108.gif";
+b[19] = new Image(); b[19].src = "114.gif";
+b[20] = new Image(); b[20].src = "120.gif";
+b[21] = new Image(); b[21].src = "126.gif";
+b[22] = new Image(); b[22].src = "132.gif";
+b[23] = new Image(); b[23].src = "138.gif";
+b[24] = new Image(); b[24].src = "144.gif";
+b[25] = new Image(); b[25].src = "150.gif";
+b[26] = new Image(); b[26].src = "156.gif";
+b[27] = new Image(); b[27].src = "162.gif";
+b[28] = new Image(); b[28].src = "168.gif";
+b[29] = new Image(); b[29].src = "174.gif";
+b[30] = new Image(); b[30].src = "180.gif";
+b[31] = new Image(); b[31].src = "186.gif";
+b[32] = new Image(); b[32].src = "192.gif";
+b[33] = new Image(); b[33].src = "198.gif";
+b[34] = new Image(); b[34].src = "204.gif";
+b[35] = new Image(); b[35].src = "210.gif";
+b[36] = new Image(); b[36].src = "216.gif";
+b[37] = new Image(); b[37].src = "222.gif";
+b[38] = new Image(); b[38].src = "228.gif";
+b[39] = new Image(); b[39].src = "234.gif";
+b[40] = new Image(); b[40].src = "240.gif";
+b[41] = new Image(); b[41].src = "246.gif";
+b[42] = new Image(); b[42].src = "252.gif";
+b[43] = new Image(); b[43].src = "258.gif";
+b[44] = new Image(); b[44].src = "264.gif";
+b[45] = new Image(); b[45].src = "270.gif";
+b[46] = new Image(); b[46].src = "276.gif";
+b[47] = new Image(); b[47].src = "282.gif";
+b[48] = new Image(); b[48].src = "288.gif";
+b[49] = new Image(); b[49].src = "294.gif";
+b[50] = new Image(); b[50].src = "300.gif";
+b[51] = new Image(); b[51].src = "306.gif";
+b[52] = new Image(); b[52].src = "312.gif";
+b[53] = new Image(); b[53].src = "318.gif";
+b[54] = new Image(); b[54].src = "324.gif";
+b[55] = new Image(); b[55].src = "330.gif";
+b[56] = new Image(); b[56].src = "336.gif";
+b[57] = new Image(); b[57].src = "342.gif";
+b[58] = new Image(); b[58].src = "348.gif";
+b[59] = new Image(); b[59].src = "354.gif";
+
+var c = new Array();
+c[0] = new Image(); c[0].src = "0.gif";
+c[1] = new Image(); c[1].src = "6.gif";
+c[2] = new Image(); c[2].src = "12.gif";
+c[3] = new Image(); c[3].src = "18.gif";
+c[4] = new Image(); c[4].src = "24.gif";
+c[5] = new Image(); c[5].src = "30.gif";
+c[6] = new Image(); c[6].src = "36.gif";
+c[7] = new Image(); c[7].src = "42.gif";
+c[8] = new Image(); c[8].src = "48.gif";
+c[9] = new Image(); c[9].src = "54.gif";
+c[10] = new Image(); c[10].src = "60.gif";
+c[11] = new Image(); c[11].src = "66.gif";
+c[12] = new Image(); c[12].src = "72.gif";
+c[13] = new Image(); c[13].src = "78.gif";
+c[14] = new Image(); c[14].src = "84.gif";
+c[15] = new Image(); c[15].src = "90.gif";
+c[16] = new Image(); c[16].src = "96.gif";
+c[17] = new Image(); c[17].src = "102.gif";
+c[18] = new Image(); c[18].src = "108.gif";
+c[19] = new Image(); c[19].src = "114.gif";
+c[20] = new Image(); c[20].src = "120.gif";
+c[21] = new Image(); c[21].src = "126.gif";
+c[22] = new Image(); c[22].src = "132.gif";
+c[23] = new Image(); c[23].src = "138.gif";
+c[24] = new Image(); c[24].src = "144.gif";
+c[25] = new Image(); c[25].src = "150.gif";
+c[26] = new Image(); c[26].src = "156.gif";
+c[27] = new Image(); c[27].src = "162.gif";
+c[28] = new Image(); c[28].src = "168.gif";
+c[29] = new Image(); c[29].src = "174.gif";
+c[30] = new Image(); c[30].src = "180.gif";
+c[31] = new Image(); c[31].src = "186.gif";
+c[32] = new Image(); c[32].src = "192.gif";
+c[33] = new Image(); c[33].src = "198.gif";
+c[34] = new Image(); c[34].src = "204.gif";
+c[35] = new Image(); c[35].src = "210.gif";
+c[36] = new Image(); c[36].src = "216.gif";
+c[37] = new Image(); c[37].src = "222.gif";
+c[38] = new Image(); c[38].src = "228.gif";
+c[39] = new Image(); c[39].src = "234.gif";
+c[40] = new Image(); c[40].src = "240.gif";
+c[41] = new Image(); c[41].src = "246.gif";
+c[42] = new Image(); c[42].src = "252.gif";
+c[43] = new Image(); c[43].src = "258.gif";
+c[44] = new Image(); c[44].src = "264.gif";
+c[45] = new Image(); c[45].src = "270.gif";
+c[46] = new Image(); c[46].src = "276.gif";
+c[47] = new Image(); c[47].src = "282.gif";
+c[48] = new Image(); c[48].src = "288.gif";
+c[49] = new Image(); c[49].src = "294.gif";
+c[50] = new Image(); c[50].src = "300.gif";
+c[51] = new Image(); c[51].src = "306.gif";
+c[52] = new Image(); c[52].src = "312.gif";
+c[53] = new Image(); c[53].src = "318.gif";
+c[54] = new Image(); c[54].src = "324.gif";
+c[55] = new Image(); c[55].src = "330.gif";
+c[56] = new Image(); c[56].src = "336.gif";
+c[57] = new Image(); c[57].src = "342.gif";
+c[58] = new Image(); c[58].src = "348.gif";
+c[59] = new Image(); c[59].src = "354.gif";
+
+
+var SinRot=Math.sin(player.rot);
+
+//0
+if(SinRot==-1){
+document.images[0].src = b[0].src;
+};
+// 6
+if((Math.cos(player.rot)<0.105&&Math.cos(player.rot)>0.103)&&(SinRot<(-0.993)&&SinRot>(-0.995))){
+document.images[0].src = b[1].src;
+};
+//12
+if((Math.cos(player.rot)<0.208&&Math.cos(player.rot)>0.206)&&(SinRot<(-0.977)&&SinRot>(-0.979))){
+document.images[0].src = b[2].src;
+};
+//18
+if((Math.cos(player.rot)<0.310&&Math.cos(player.rot)>0.308)&&(SinRot<(-0.950)&&SinRot>(-0.952))){
+document.images[0].src = b[3].src;
+};
+//24
+if((Math.cos(player.rot)<0.407&&Math.cos(player.rot)>0.405)&&(SinRot<(-0.912)&&SinRot>(-0.914))){
+document.images[0].src = b[4].src;
+};
+//30
+if((Math.cos(player.rot)<0.500&&Math.cos(player.rot)>0.498)&&(SinRot<(-0.865)&&SinRot>(-0.867))){
+document.images[0].src = b[5].src;
+};
+//36
+if((Math.cos(player.rot)<0.588&&Math.cos(player.rot)>0.586)&&(SinRot<(-0.808)&&SinRot>(-0.810))){
+document.images[0].src = b[6].src;
+};
+//42
+if((Math.cos(player.rot)<0.670&&Math.cos(player.rot)>0.668)&&(SinRot<(-0.742)&&SinRot>(-0.744))){
+document.images[0].src = b[7].src;
+};
+//48
+if((Math.cos(player.rot)<0.744&&Math.cos(player.rot)>0.742)&&(SinRot<(-0.668)&&SinRot>(-0.670))){
+document.images[0].src = b[8].src;
+};
+//54
+if((Math.cos(player.rot)<0.810&&Math.cos(player.rot)>0.808)&&(SinRot<(-0.586)&&SinRot>(-0.588))){
+document.images[0].src = b[9].src;
+};
+//60
+if((Math.cos(player.rot)<0.867&&Math.cos(player.rot)>0.865)&&(SinRot<(-0.498)&&SinRot>(-0.500))){
+document.images[0].src = b[10].src;
+};
+//66
+if((Math.cos(player.rot)<0.914&&Math.cos(player.rot)>0.912)&&(SinRot<(-0.405)&&SinRot>(-0.407))){
+document.images[0].src = b[11].src;
+};
+//72
+if((Math.cos(player.rot)<0.952&&Math.cos(player.rot)>0.950)&&(SinRot<(-0.308)&&SinRot>(-0.310))){
+document.images[0].src = b[12].src;
+};
+//78
+if((Math.cos(player.rot)<0.979&&Math.cos(player.rot)>0.977)&&(SinRot<(-0.206)&&SinRot>(-0.208))){
+document.images[0].src = b[13].src;
+};
+//84
+if((Math.cos(player.rot)<0.995&&Math.cos(player.rot)>0.993)&&(SinRot<(-0.103)&&SinRot>(-0.105))){
+document.images[0].src = b[14].src;
+};
+//90
+if(Math.cos(player.rot)==1){
+document.images[0].src = b[15].src;
+};
+// 96
+if((SinRot<0.105&&SinRot>0.103)&&(Math.cos(player.rot)>(0.993)&&Math.cos(player.rot)<(0.995))){
+document.images[0].src = b[16].src;
+};
+//102
+if((SinRot<0.208&&SinRot>0.206)&&(Math.cos(player.rot)>(0.977)&&Math.cos(player.rot)<(0.979))){
+document.images[0].src = b[17].src;
+};
+//108
+if((SinRot<0.310&&SinRot>0.308)&&(Math.cos(player.rot)>(0.950)&&Math.cos(player.rot)<(0.952))){
+document.images[0].src = b[18].src;
+};
+//114
+if((SinRot<0.407&&SinRot>0.405)&&(Math.cos(player.rot)>(0.912)&&Math.cos(player.rot)<(0.914))){
+document.images[0].src = b[19].src;
+};
+//120
+if((SinRot<0.500&&SinRot>0.498)&&(Math.cos(player.rot)>(0.865)&&Math.cos(player.rot)<(0.867))){
+document.images[0].src = b[20].src;
+};
+//126
+if((SinRot<0.588&&SinRot>0.586)&&(Math.cos(player.rot)>(0.808)&&Math.cos(player.rot)<(0.810))){
+document.images[0].src = b[21].src;
+};
+//132
+if((SinRot<0.670&&SinRot>0.668)&&(Math.cos(player.rot)>(0.742)&&Math.cos(player.rot)<(0.744))){
+document.images[0].src = b[22].src;
+};
+//138
+if((SinRot<0.744&&SinRot>0.742)&&(Math.cos(player.rot)>(0.668)&&Math.cos(player.rot)<(0.670))){
+document.images[0].src = b[23].src;
+};
+//144
+if((SinRot<0.810&&SinRot>0.808)&&(Math.cos(player.rot)>(0.586)&&Math.cos(player.rot)<(0.588))){
+document.images[0].src = b[24].src;
+};
+//150
+if((SinRot<0.867&&SinRot>0.865)&&(Math.cos(player.rot)>(0.498)&&Math.cos(player.rot)<(0.500))){
+document.images[0].src = b[25].src;
+};
+//156
+if((SinRot<0.914&&SinRot>0.912)&&(Math.cos(player.rot)>(0.405)&&Math.cos(player.rot)<(0.407))){
+document.images[0].src = b[26].src;
+};
+//162
+if((SinRot<0.952&&SinRot>0.950)&&(Math.cos(player.rot)>(0.308)&&Math.cos(player.rot)<(0.310))){
+document.images[0].src = b[27].src;
+};
+//168
+if((SinRot<0.979&&SinRot>0.977)&&(Math.cos(player.rot)>(0.206)&&Math.cos(player.rot)<(0.208))){
+document.images[0].src = b[28].src;
+};
+//174
+if((SinRot<0.995&&SinRot>0.993)&&(Math.cos(player.rot)>(0.103)&&Math.cos(player.rot)<(0.105))){
+document.images[0].src = b[29].src;
+};
+//180
+if(SinRot==1){
+document.images[0].src = b[30].src;
+};
+// 186
+if((Math.cos(player.rot)>(-0.105)&&Math.cos(player.rot)<(-0.103))&&(SinRot>(0.993)&&SinRot<(0.995))){
+document.images[0].src = b[31].src;
+};
+//192
+if((Math.cos(player.rot)>(-0.208)&&Math.cos(player.rot)<(-0.206))&&(SinRot>(0.977)&&SinRot<(0.979))){
+document.images[0].src = b[32].src;
+};
+//198
+if((Math.cos(player.rot)>(-0.310)&&Math.cos(player.rot)<(-0.308))&&(SinRot>(0.950)&&SinRot<(0.952))){
+document.images[0].src = b[33].src;
+};
+//204
+if((Math.cos(player.rot)>(-0.407)&&Math.cos(player.rot)<(-0.405))&&(SinRot>(0.912)&&SinRot<(0.914))){
+document.images[0].src = b[34].src;
+};
+//210
+if((Math.cos(player.rot)>(-0.500)&&Math.cos(player.rot)<(-0.498))&&(SinRot>(0.865)&&SinRot<(0.867))){
+document.images[0].src = b[35].src;
+};
+//216
+if((Math.cos(player.rot)>(-0.588)&&Math.cos(player.rot)<(-0.586))&&(SinRot>(0.808)&&SinRot<(0.810))){
+document.images[0].src = b[36].src;
+};
+//222
+if((Math.cos(player.rot)>(-0.670)&&Math.cos(player.rot)<(-0.668))&&(SinRot>(0.742)&&SinRot<(0.744))){
+document.images[0].src = b[37].src;
+};
+//228
+if((Math.cos(player.rot)>(-0.744)&&Math.cos(player.rot)<(-0.742))&&(SinRot>(0.668)&&SinRot<(0.670))){
+document.images[0].src = b[38].src;
+};
+//234
+if((Math.cos(player.rot)>(-0.810)&&Math.cos(player.rot)<(-0.808))&&(SinRot>(0.586)&&SinRot<(0.588))){
+document.images[0].src = b[39].src;
+};
+//240
+if((Math.cos(player.rot)>(-0.867)&&Math.cos(player.rot)<(-0.865))&&(SinRot>(0.498)&&SinRot<(0.500))){
+document.images[0].src = b[40].src;
+};
+//246
+if((Math.cos(player.rot)>(-0.914)&&Math.cos(player.rot)<(-0.912))&&(SinRot>(0.405)&&SinRot<(0.407))){
+document.images[0].src = b[41].src;
+};
+//252
+if((Math.cos(player.rot)>(-0.952)&&Math.cos(player.rot)<(-0.950))&&(SinRot>(0.308)&&SinRot<(0.310))){
+document.images[0].src = b[42].src;
+};
+//258
+if((Math.cos(player.rot)>(-0.979)&&Math.cos(player.rot)<(-0.977))&&(SinRot>(0.206)&&SinRot<(0.208))){
+document.images[0].src = b[43].src;
+};
+//264
+if((Math.cos(player.rot)>(-0.995)&&Math.cos(player.rot)<(-0.993))&&(SinRot>(0.103)&&SinRot<(0.105))){
+document.images[0].src = b[44].src;
+};
+//270
+if(Math.cos(player.rot)==-1){
+document.images[0].src = b[45].src;
+};
+// 276
+if((SinRot>(-0.105)&&SinRot<(-0.103))&&(Math.cos(player.rot)<(-0.993)&&Math.cos(player.rot)>(-0.995))){
+document.images[0].src = b[46].src;
+};
+//282
+if((SinRot>(-0.208)&&SinRot<(-0.206))&&(Math.cos(player.rot)<(-0.977)&&Math.cos(player.rot)>(-0.979))){
+document.images[0].src = b[47].src;
+};
+//288
+if((SinRot>(-0.310)&&SinRot<(-0.308))&&(Math.cos(player.rot)<(-0.950)&&Math.cos(player.rot)>(-0.952))){
+document.images[0].src = b[48].src;
+};
+//294
+if((SinRot>(-0.407)&&SinRot<(-0.405))&&(Math.cos(player.rot)<(-0.912)&&Math.cos(player.rot)>(-0.914))){
+document.images[0].src = b[49].src;
+};
+//300
+if((SinRot>(-0.500)&&SinRot<(-0.498))&&(Math.cos(player.rot)<(-0.865)&&Math.cos(player.rot)>(-0.867))){
+document.images[0].src = b[50].src;
+};
+//306
+if((SinRot>(-0.588)&&SinRot<(-0.586))&&(Math.cos(player.rot)<(-0.808)&&Math.cos(player.rot)>(-0.810))){
+document.images[0].src = b[51].src;
+};
+//312
+if((SinRot>(-0.670)&&SinRot<(-0.668))&&(Math.cos(player.rot)<(-0.742)&&Math.cos(player.rot)>(-0.744))){
+document.images[0].src = b[52].src;
+};
+//318
+if((SinRot>(-0.744)&&SinRot<(-0.742))&&(Math.cos(player.rot)<(-0.668)&&Math.cos(player.rot)>(-0.670))){
+document.images[0].src = b[53].src;
+};
+//324
+if((SinRot>(-0.810)&&SinRot<(-0.808))&&(Math.cos(player.rot)<(-0.586)&&Math.cos(player.rot)>(-0.588))){
+document.images[0].src = b[54].src;
+};
+//330
+if((SinRot>(-0.867)&&SinRot<(-0.865))&&(Math.cos(player.rot)<(-0.498)&&Math.cos(player.rot)>(-0.500))){
+document.images[0].src = b[55].src;
+};
+//336
+if((SinRot>(-0.914)&&SinRot<(-0.912))&&(Math.cos(player.rot)<(-0.405)&&Math.cos(player.rot)>(-0.407))){
+document.images[0].src = b[56].src;
+};
+//342
+if((SinRot>(-0.952)&&SinRot<(-0.950))&&(Math.cos(player.rot)<(-0.308)&&Math.cos(player.rot)>(-0.310))){
+document.images[0].src = b[57].src;
+};
+//348
+if((SinRot>(-0.979)&&SinRot<(-0.977))&&(Math.cos(player.rot)<(-0.206)&&Math.cos(player.rot)>(-0.208))){
+document.images[0].src = b[58].src;
+};
+//354
+if((SinRot>(-0.995)&&SinRot<(-0.993))&&(Math.cos(player.rot)<(-0.103)&&Math.cos(player.rot)>(-0.105))){
+document.images[0].src = b[59].src;
+};
+
+var SinRot2=Math.sin(player2.rot);
+
+//0
+if(SinRot2==-1){
+document.images[1].src = b[0].src;
+};
+// 6
+if((Math.cos(player2.rot)<0.105&&Math.cos(player2.rot)>0.103)&&(SinRot2<(-0.993)&&SinRot2>(-0.995))){
+document.images[1].src = b[1].src;
+};
+//12
+if((Math.cos(player2.rot)<0.208&&Math.cos(player2.rot)>0.206)&&(SinRot2<(-0.977)&&SinRot2>(-0.979))){
+document.images[1].src = b[2].src;
+};
+//18
+if((Math.cos(player2.rot)<0.310&&Math.cos(player2.rot)>0.308)&&(SinRot2<(-0.950)&&SinRot2>(-0.952))){
+document.images[1].src = b[3].src;
+};
+//24
+if((Math.cos(player2.rot)<0.407&&Math.cos(player2.rot)>0.405)&&(SinRot2<(-0.912)&&SinRot2>(-0.914))){
+document.images[1].src = b[4].src;
+};
+//30
+if((Math.cos(player2.rot)<0.500&&Math.cos(player2.rot)>0.498)&&(SinRot2<(-0.865)&&SinRot2>(-0.867))){
+document.images[1].src = b[5].src;
+};
+//36
+if((Math.cos(player2.rot)<0.588&&Math.cos(player2.rot)>0.586)&&(SinRot2<(-0.808)&&SinRot2>(-0.810))){
+document.images[1].src = b[6].src;
+};
+//42
+if((Math.cos(player2.rot)<0.670&&Math.cos(player2.rot)>0.668)&&(SinRot2<(-0.742)&&SinRot2>(-0.744))){
+document.images[1].src = b[7].src;
+};
+//48
+if((Math.cos(player2.rot)<0.744&&Math.cos(player2.rot)>0.742)&&(SinRot2<(-0.668)&&SinRot2>(-0.670))){
+document.images[1].src = b[8].src;
+};
+//54
+if((Math.cos(player2.rot)<0.810&&Math.cos(player2.rot)>0.808)&&(SinRot2<(-0.586)&&SinRot2>(-0.588))){
+document.images[1].src = b[9].src;
+};
+//60
+if((Math.cos(player2.rot)<0.867&&Math.cos(player2.rot)>0.865)&&(SinRot2<(-0.498)&&SinRot2>(-0.500))){
+document.images[1].src = b[10].src;
+};
+//66
+if((Math.cos(player2.rot)<0.914&&Math.cos(player2.rot)>0.912)&&(SinRot2<(-0.405)&&SinRot2>(-0.407))){
+document.images[1].src = b[11].src;
+};
+//72
+if((Math.cos(player2.rot)<0.952&&Math.cos(player2.rot)>0.950)&&(SinRot2<(-0.308)&&SinRot2>(-0.310))){
+document.images[1].src = b[12].src;
+};
+//78
+if((Math.cos(player2.rot)<0.979&&Math.cos(player2.rot)>0.977)&&(SinRot2<(-0.206)&&SinRot2>(-0.208))){
+document.images[1].src = b[13].src;
+};
+//84
+if((Math.cos(player2.rot)<0.995&&Math.cos(player2.rot)>0.993)&&(SinRot2<(-0.103)&&SinRot2>(-0.105))){
+document.images[1].src = b[14].src;
+};
+//90
+if(Math.cos(player2.rot)==1){
+document.images[1].src = b[15].src;
+};
+// 96
+if((SinRot2<0.105&&SinRot2>0.103)&&(Math.cos(player2.rot)>(0.993)&&Math.cos(player2.rot)<(0.995))){
+document.images[1].src = b[16].src;
+};
+//102
+if((SinRot2<0.208&&SinRot2>0.206)&&(Math.cos(player2.rot)>(0.977)&&Math.cos(player2.rot)<(0.979))){
+document.images[1].src = b[17].src;
+};
+//108
+if((SinRot2<0.310&&SinRot2>0.308)&&(Math.cos(player2.rot)>(0.950)&&Math.cos(player2.rot)<(0.952))){
+document.images[1].src = b[18].src;
+};
+//114
+if((SinRot2<0.407&&SinRot2>0.405)&&(Math.cos(player2.rot)>(0.912)&&Math.cos(player2.rot)<(0.914))){
+document.images[1].src = b[19].src;
+};
+//120
+if((SinRot2<0.500&&SinRot2>0.498)&&(Math.cos(player2.rot)>(0.865)&&Math.cos(player2.rot)<(0.867))){
+document.images[1].src = b[20].src;
+};
+//126
+if((SinRot2<0.588&&SinRot2>0.586)&&(Math.cos(player2.rot)>(0.808)&&Math.cos(player2.rot)<(0.810))){
+document.images[1].src = b[21].src;
+};
+//132
+if((SinRot2<0.670&&SinRot2>0.668)&&(Math.cos(player2.rot)>(0.742)&&Math.cos(player2.rot)<(0.744))){
+document.images[1].src = b[22].src;
+};
+//138
+if((SinRot2<0.744&&SinRot2>0.742)&&(Math.cos(player2.rot)>(0.668)&&Math.cos(player2.rot)<(0.670))){
+document.images[1].src = b[23].src;
+};
+//144
+if((SinRot2<0.810&&SinRot2>0.808)&&(Math.cos(player2.rot)>(0.586)&&Math.cos(player2.rot)<(0.588))){
+document.images[1].src = b[24].src;
+};
+//150
+if((SinRot2<0.867&&SinRot2>0.865)&&(Math.cos(player2.rot)>(0.498)&&Math.cos(player2.rot)<(0.500))){
+document.images[1].src = b[25].src;
+};
+//156
+if((SinRot2<0.914&&SinRot2>0.912)&&(Math.cos(player2.rot)>(0.405)&&Math.cos(player2.rot)<(0.407))){
+document.images[1].src = b[26].src;
+};
+//162
+if((SinRot2<0.952&&SinRot2>0.950)&&(Math.cos(player2.rot)>(0.308)&&Math.cos(player2.rot)<(0.310))){
+document.images[1].src = b[27].src;
+};
+//168
+if((SinRot2<0.979&&SinRot2>0.977)&&(Math.cos(player2.rot)>(0.206)&&Math.cos(player2.rot)<(0.208))){
+document.images[1].src = b[28].src;
+};
+//174
+if((SinRot2<0.995&&SinRot2>0.993)&&(Math.cos(player2.rot)>(0.103)&&Math.cos(player2.rot)<(0.105))){
+document.images[1].src = b[29].src;
+};
+//180
+if(SinRot2==1){
+document.images[1].src = b[30].src;
+};
+// 186
+if((Math.cos(player2.rot)>(-0.105)&&Math.cos(player2.rot)<(-0.103))&&(SinRot2>(0.993)&&SinRot2<(0.995))){
+document.images[1].src = b[31].src;
+};
+//192
+if((Math.cos(player2.rot)>(-0.208)&&Math.cos(player2.rot)<(-0.206))&&(SinRot2>(0.977)&&SinRot2<(0.979))){
+document.images[1].src = b[32].src;
+};
+//198
+if((Math.cos(player2.rot)>(-0.310)&&Math.cos(player2.rot)<(-0.308))&&(SinRot2>(0.950)&&SinRot2<(0.952))){
+document.images[1].src = b[33].src;
+};
+//204
+if((Math.cos(player2.rot)>(-0.407)&&Math.cos(player2.rot)<(-0.405))&&(SinRot2>(0.912)&&SinRot2<(0.914))){
+document.images[1].src = b[34].src;
+};
+//210
+if((Math.cos(player2.rot)>(-0.500)&&Math.cos(player2.rot)<(-0.498))&&(SinRot2>(0.865)&&SinRot2<(0.867))){
+document.images[1].src = b[35].src;
+};
+//216
+if((Math.cos(player2.rot)>(-0.588)&&Math.cos(player2.rot)<(-0.586))&&(SinRot2>(0.808)&&SinRot2<(0.810))){
+document.images[1].src = b[36].src;
+};
+//222
+if((Math.cos(player2.rot)>(-0.670)&&Math.cos(player2.rot)<(-0.668))&&(SinRot2>(0.742)&&SinRot2<(0.744))){
+document.images[1].src = b[37].src;
+};
+//228
+if((Math.cos(player2.rot)>(-0.744)&&Math.cos(player2.rot)<(-0.742))&&(SinRot2>(0.668)&&SinRot2<(0.670))){
+document.images[1].src = b[38].src;
+};
+//234
+if((Math.cos(player2.rot)>(-0.810)&&Math.cos(player2.rot)<(-0.808))&&(SinRot2>(0.586)&&SinRot2<(0.588))){
+document.images[1].src = b[39].src;
+};
+//240
+if((Math.cos(player2.rot)>(-0.867)&&Math.cos(player2.rot)<(-0.865))&&(SinRot2>(0.498)&&SinRot2<(0.500))){
+document.images[1].src = b[40].src;
+};
+//246
+if((Math.cos(player2.rot)>(-0.914)&&Math.cos(player2.rot)<(-0.912))&&(SinRot2>(0.405)&&SinRot2<(0.407))){
+document.images[1].src = b[41].src;
+};
+//252
+if((Math.cos(player2.rot)>(-0.952)&&Math.cos(player2.rot)<(-0.950))&&(SinRot2>(0.308)&&SinRot2<(0.310))){
+document.images[1].src = b[42].src;
+};
+//258
+if((Math.cos(player2.rot)>(-0.979)&&Math.cos(player2.rot)<(-0.977))&&(SinRot2>(0.206)&&SinRot2<(0.208))){
+document.images[1].src = b[43].src;
+};
+//264
+if((Math.cos(player2.rot)>(-0.995)&&Math.cos(player2.rot)<(-0.993))&&(SinRot2>(0.103)&&SinRot2<(0.105))){
+document.images[1].src = b[44].src;
+};
+//270
+if(Math.cos(player2.rot)==-1){
+document.images[1].src = b[45].src;
+};
+// 276
+if((SinRot2>(-0.105)&&SinRot2<(-0.103))&&(Math.cos(player2.rot)<(-0.993)&&Math.cos(player2.rot)>(-0.995))){
+document.images[1].src = b[46].src;
+};
+//282
+if((SinRot2>(-0.208)&&SinRot2<(-0.206))&&(Math.cos(player2.rot)<(-0.977)&&Math.cos(player2.rot)>(-0.979))){
+document.images[1].src = b[47].src;
+};
+//288
+if((SinRot2>(-0.310)&&SinRot2<(-0.308))&&(Math.cos(player2.rot)<(-0.950)&&Math.cos(player2.rot)>(-0.952))){
+document.images[1].src = b[48].src;
+};
+//294
+if((SinRot2>(-0.407)&&SinRot2<(-0.405))&&(Math.cos(player2.rot)<(-0.912)&&Math.cos(player2.rot)>(-0.914))){
+document.images[1].src = b[49].src;
+};
+//300
+if((SinRot2>(-0.500)&&SinRot2<(-0.498))&&(Math.cos(player2.rot)<(-0.865)&&Math.cos(player2.rot)>(-0.867))){
+document.images[1].src = b[50].src;
+};
+//306
+if((SinRot2>(-0.588)&&SinRot2<(-0.586))&&(Math.cos(player2.rot)<(-0.808)&&Math.cos(player2.rot)>(-0.810))){
+document.images[1].src = b[51].src;
+};
+//312
+if((SinRot2>(-0.670)&&SinRot2<(-0.668))&&(Math.cos(player2.rot)<(-0.742)&&Math.cos(player2.rot)>(-0.744))){
+document.images[1].src = b[52].src;
+};
+//318
+if((SinRot2>(-0.744)&&SinRot2<(-0.742))&&(Math.cos(player2.rot)<(-0.668)&&Math.cos(player2.rot)>(-0.670))){
+document.images[1].src = b[53].src;
+};
+//324
+if((SinRot2>(-0.810)&&SinRot2<(-0.808))&&(Math.cos(player2.rot)<(-0.586)&&Math.cos(player2.rot)>(-0.588))){
+document.images[1].src = b[54].src;
+};
+//330
+if((SinRot2>(-0.867)&&SinRot2<(-0.865))&&(Math.cos(player2.rot)<(-0.498)&&Math.cos(player2.rot)>(-0.500))){
+document.images[1].src = b[55].src;
+};
+//336
+if((SinRot2>(-0.914)&&SinRot2<(-0.912))&&(Math.cos(player2.rot)<(-0.405)&&Math.cos(player2.rot)>(-0.407))){
+document.images[1].src = b[56].src;
+};
+//342
+if((SinRot2>(-0.952)&&SinRot2<(-0.950))&&(Math.cos(player2.rot)<(-0.308)&&Math.cos(player2.rot)>(-0.310))){
+document.images[1].src = b[57].src;
+};
+//348
+if((SinRot2>(-0.979)&&SinRot2<(-0.977))&&(Math.cos(player2.rot)<(-0.206)&&Math.cos(player2.rot)>(-0.208))){
+document.images[1].src = b[58].src;
+};
+//354
+if((SinRot2>(-0.995)&&SinRot2<(-0.993))&&(Math.cos(player2.rot)<(-0.103)&&Math.cos(player2.rot)>(-0.105))){
+document.images[1].src = b[59].src;
+};
+	setTimeout(Animation,1000/10);
+}
+// bind keyboard events to game functions (movement, etc)
+function bindKeys() {
+
+	document.onkeydown = function(e) {
+		e = e || window.event;
+
+		switch (e.keyCode) { // which key was pressed?
+// Player1
+			case 49: // up, move player forward, ie. increase speed
+			if(player.moveSpeed<0.17){
+				player.speed = 1;
+				player.moveSpeed=0.18;
+				}
+			if(player.moveSpeed>0.18){
+			player.moveSpeed=0.18;
+			}
+				break;
+
+			case 50: // up, move player forward, ie. increase speed
+			if(player.moveSpeed>0.17&&player.moveSpeed<0.34){
+				player.speed = 1;
+				player.moveSpeed+=0.18;
+			}
+			if(player.moveSpeed>0.34){
+			player.moveSpeed=0.36;
+			}
+				break;
+			
+
+			case 51: // up, move player forward, ie. increase speed
+			if(player.moveSpeed>0.34&&player.moveSpeed<0.54){
+				player.speed = 1;
+				player.moveSpeed+=0.18;
+				}
+				break;
+
+			case 38: // up, move player forward, ie. increase speed
+				player.speed = 1;
+				player.moveSpeed=0.16;
+				break;
+
+			case 40: // down, move player backward, set negative speed
+				player.speed = -1;
+				break;
+
+			case 37: // left, rotate player left
+				player.dir = -1;
+//				Animation();
+				break;
+
+			case 39: // right, rotate player right
+				player.dir = 1;
+//				Animation();
+				break;
+				}switch (e.keyCode) { 
+// Player2
+/*			case 49: // up, move player2 forward, ie. increase speed
+			if(player2.moveSpeed<0.17){
+				player2.speed = 1;
+				player2.moveSpeed=0.18;
+				}
+			if(player2.moveSpeed>0.18){
+			player2.moveSpeed=0.18;
+			}
+				break;
+
+			case 50: // up, move player2 forward, ie. increase speed
+			if(player2.moveSpeed>0.17&&player2.moveSpeed<0.34){
+				player2.speed = 1;
+				player2.moveSpeed+=0.18;
+			}
+			if(player2.moveSpeed>0.34){
+			player2.moveSpeed=0.36;
+			}
+				break;
+			
+
+			case 51: // up, move player2 forward, ie. increase speed
+			if(player2.moveSpeed>0.34&&player2.moveSpeed<0.54){
+				player2.speed = 1;
+				player2.moveSpeed+=0.18;
+				}
+				break;
+*/
+			case 87: // up, move player2 forward, ie. increase speed
+				player2.speed = 1;
+				player2.moveSpeed=0.16;
+				break;
+
+			case 83: // down, move player2 backward, set negative speed
+				player2.speed = -1;
+				break;
+
+			case 65: // left, rotate player2 left
+				player2.dir = -1;
+//				Animation();
+				break;
+
+			case 68: // right, rotate player2 right
+				player2.dir = 1;
+//				Animation();
+				break;
+		}
+	}
+
+	document.onkeyup = function(e) {
+		e = e || window.event;
+
+		switch (e.keyCode) {
+			case 87:
+			case 83:
+				player2.speed = 0;	// stop the player2 movement when up/down key is released
+				
+				break;
+			case 65:
+			case 68:
+				player2.dir = 0;
+				break;
+		}
+				switch (e.keyCode) {
+			case 38:
+			case 40:
+				player.speed = 0;	// stop the player2 movement when up/down key is released
+				
+				break;
+			case 37:
+			case 39:
+				player.dir = 0;
+				break;
+		}
+	}
+}
+
+function gameCycle() {
+
+	move();
+
+	updateMiniMap();
+
+	setTimeout(gameCycle,1000/30);
+}
+
+function move() {
+	var moveStep = player.speed * player.moveSpeed;	// player will move this far along the current direction vector
+
+	player.rot += player.dir * player.rotSpeed * Math.PI / 180; // add rotation if player is rotating (player.dir != 0)
+
+	var newX = player.x + Math.cos(player.rot) * moveStep;	// calculate new player position with simple trigonometry
+	var newY = player.y + Math.sin(player.rot) * moveStep;
+
+	if (isBlocking(newX, newY)) {	// are we allowed to move to the new position?
+		return; // no, bail out.
+
+	}
+	player.x = newX; // set new position
+	player.y = newY;
+
+	var moveStep2 = player2.speed * player2.moveSpeed;	// player2 will move this far along the current direction vector
+
+	player2.rot += player2.dir * player2.rotSpeed * Math.PI / 180; // add rotation if player2 is rotating (player2.dir != 0)
+
+	var newX2 = player2.x + Math.cos(player2.rot) * moveStep2;	// calculate new player2 position with simple trigonometry
+	var newY2 = player2.y + Math.sin(player2.rot) * moveStep2;
+
+	if (isBlocking(newX2, newY2)) {	// are we allowed to move to the new position?
+		return; // no, bail out.
+
+	}
+	player2.x = newX2; // set new position
+	player2.y = newY2;
+//if(player.x>20&&player.x<25&&player.y>0&&player.y<5){
+//player.x=10;
+//}
+}
+
+function isBlocking(x,y) {
+
+	// first make sure that we cannot move outside the boundaries of the level
+	if (y < 0 || y > mapHeight || x < 0 || x > mapWidth)
+		return true;
+
+	// return true if the map block is not 0, ie. if there is a blocking wall.
+	return (map[Math.floor(y)][Math.floor(x)] != 0); 
+}
+
+function updateMiniMap() {
+	var playerScale=2;
+	var player2Scale=2;
+	var miniMap = $("minimap");
+	var miniMapObjects = $("minimapobjects");
+
+	var objectCtx = miniMapObjects.getContext("2d");
+	miniMapObjects.width = miniMapObjects.width;
+	//objectCtx.clearRect(0,0,miniMap.width,miniMap.height);
+
+	objectCtx.fillRect(		// draw a dot at the current player position
+		player.x * miniMapScale - playerScale, 
+		player.y * miniMapScale - playerScale,
+		playerScale*2, playerScale*2
+	);
+	objectCtx.beginPath();
+	objectCtx.moveTo(player.x * miniMapScale, player.y * miniMapScale);
+	objectCtx.lineTo(
+		(player.x + Math.cos(player.rot) * 4) * miniMapScale,
+		(player.y + Math.sin(player.rot) * 4) * miniMapScale
+	);
+	objectCtx.closePath();
+	objectCtx.stroke();
+
+	objectCtx.fillRect(		// draw a dot at the current player2 position
+		player2.x * miniMapScale - player2Scale, 
+		player2.y * miniMapScale - player2Scale,
+		player2Scale*2, player2Scale*2
+	);
+	objectCtx.beginPath();
+	objectCtx.moveTo(player2.x * miniMapScale, player2.y * miniMapScale);
+	objectCtx.lineTo(
+		(player2.x + Math.cos(player2.rot) * 4) * miniMapScale,
+		(player2.y + Math.sin(player2.rot) * 4) * miniMapScale
+	);
+	objectCtx.closePath();
+	objectCtx.stroke();
+	moveDiv();
+//	Animation();
+}
+
+function drawMiniMap() {
+
+	// draw the topdown view minimap
+	document.getElementById("MyDiv").style.left=(player.x*15)+'px';
+	document.getElementById("MyDiv").style.top=(player.y*15)+'px';
+
+	var miniMap = $("minimap");			// the actual map
+	var miniMapCtr = $("minimapcontainer");		// the container div element
+	var miniMapObjects = $("minimapobjects");	// the canvas used for drawing the objects on the map (player character, etc)
+
+	miniMap.width = mapWidth * miniMapScale;	// resize the internal canvas dimensions 
+	miniMap.height = mapHeight * miniMapScale;	// of both the map canvas and the object canvas
+	miniMapObjects.width = miniMap.width;
+	miniMapObjects.height = miniMap.height;
+
+	var w = (mapWidth * miniMapScale) + "px" 	// minimap CSS dimensions
+	var h = (mapHeight * miniMapScale) + "px"
+	miniMap.style.width = miniMapObjects.style.width = miniMapCtr.style.width = w;
+	miniMap.style.height = miniMapObjects.style.height = miniMapCtr.style.height = h;
+
+	var ctx = miniMap.getContext("2d");
+
+	ctx.fillStyle = "white";
+	ctx.fillRect(0,0,miniMap.width,miniMap.height);
+
+	// loop through all blocks on the map
+	for (var y=0;y<mapHeight;y++) {
+		for (var x=0;x<mapWidth;x++) {
+
+			var wall = map[y][x];
+
+			if (wall > 0&&wall < 2) { // if there is a wall block at this (x,y) ...
+
+				ctx.fillStyle = "rgb(120,210,240)";
+				ctx.fillRect(				// ... then draw a block on the minimap
+					x * miniMapScale,
+					y * miniMapScale,
+					miniMapScale,miniMapScale
+				);
+
+			}
+			if (wall > 1&&wall < 3) { // if there is a wall block at this (x,y) ...
+
+				ctx.fillStyle = "rgb(255,0,0)";
+				ctx.fillRect(				// ... then draw a block on the minimap
+					x * miniMapScale,
+					y * miniMapScale,
+					miniMapScale,miniMapScale
+				);
+
+			}
+		}
+	}
+
+	updateMiniMap();
+}
+
+setTimeout(init,1);
+
+</SCRIPT>
+<div id="MyDiv" style="position:absolute;left:200" background-color:green;>
+<img src="90.gif" />
+</div>
+<div id="MyDiv2" style="position:absolute;left:200" background-color:green;>
+<img src="90.gif" />
+</div>
+<div id="boden"></div>
+<div id="decke"></div>
+<div id="links"></div>
+<div id="rechts"></div>
+<div id="Strecke"></div>
+<div id="ReifenBlockade"></div>
+<div id="ReifenBlockade2"></div>
+<div id="ReifenBlockade3"></div>
+<div id="ReifenBlockade4"></div>
+</BODY></HTML>

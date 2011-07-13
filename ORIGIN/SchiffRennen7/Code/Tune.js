@@ -1,0 +1,15 @@
+//class:Tune
+Tune=function(){
+	this.play=function(){
+		if($('Play').value=='none'){
+			$('Play').style.display='static';
+			$('Play').value=$('Play').style.display;
+			alert('static');
+		}
+		if($('Play').lang=='static'){
+			$('Play').style.display='none';
+			$('Play').value=$('Play').style.display;
+			alert('none');
+		}
+	}
+}

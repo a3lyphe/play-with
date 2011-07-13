@@ -1,0 +1,14 @@
+Wasserwechsel=function(){
+		if(WasserwechselCounter==0){
+			$('Karte').style.backgroundImage='url(\'Icon/Meer.png\')';
+			//alert('4');
+		}
+		if(WasserwechselCounter==1){
+			$('Karte').style.backgroundImage='url(\'Icon/Meer2.png\')';
+			//alert('5');
+		}
+		WasserwechselCounter+=1;
+		if(WasserwechselCounter>1){
+		WasserwechselCounter=0;
+		}
+}

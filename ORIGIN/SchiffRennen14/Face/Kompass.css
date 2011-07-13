@@ -1,0 +1,9 @@
+#Kompass{
+background-image:url('../Icon/Kompass/Kompass.png');
+position:absolute;
+z-index:45;
+left:590px;
+bottom:0;
+height:46px;
+width:60px;
+}

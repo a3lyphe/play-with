@@ -1,0 +1,142 @@
+<html><head><meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+<title>Jurte500</title>
+<link rel="shortcut icon" type="image/x-icon" href="Last Reset Favicon.ico"/>
+<link rel="stylesheet" type="text/css" media="screen" href="style.css"/>
+
+
+<script src="excanvas.js" type="text/javascript"></script>
+<script src="script.js" type="text/javascript"></script>
+
+</head>
+<body onLoad="Animation(),Animation2(),Background(),OberInit(),WindHoseInit()">
+
+<div id="minimapcontainer" style="width: 576px; height: 384px; ">
+<canvas id="minimap" width="576" height="384" style="width: 576px; height: 384px; "></canvas>
+<canvas id="minimapobjects" width="576" height="384" style="width: 576px; height: 384px; "></canvas>
+</div>
+
+<div id="Karte"></div>
+<div id="Karte2"></div>
+<div id="Karte3"></div>
+
+<div id="Havanna">Havanna
+	<div id="HafenBildHavanna"></div>
+	<div id="Symbole3"></div>
+	<input type="text" id="LeuteHavanna" value="" />
+	<input type="text" id="GeldHavanna" value="" />
+	<input type="text" id="NahrungHavanna" value="" />
+	<div id="TaverneHavannaKnopf" onmousedown="TaverneHavanna()"></div>
+	<div id="ExitHavanna" onmousedown="ExitHavanna()"></div>
+</div>
+<div id="TaverneHavanna">
+<div id="TaverneHavannaAnheuern" onmousedown="AnheuernHavanna()"></div>
+<div id="ExitTaverneHavanna" onmousedown="ExitTaverneHavanna()"></div>
+</div>
+
+<div id="Havanna2">Havanna
+	<div id="HafenBildHavanna2"></div>
+	<div id="Symbole4"></div>
+	<input type="text" id="LeuteHavanna2" value="" />
+	<input type="text" id="GeldHavanna2" value="" />
+	<input type="text" id="NahrungHavanna2" value="" />
+	<div id="TaverneHavanna2Knopf" onmousedown="TaverneHavanna2()"></div>
+	<div id="ExitHavanna2" onmousedown="ExitHavanna2()"></div>
+</div>
+<div id="TaverneHavanna2">
+<div id="TaverneHavanna2Anheuern" onmousedown="AnheuernHavanna2()"></div>
+<div id="ExitTaverneHavanna2" onmousedown="ExitTaverneHavanna2()"></div>
+</div>
+
+
+<div id="Ischtuk">Ischtuk
+	<div id="HafenBildIschtuk"></div>
+	<div id="Symbole"></div>
+	<input type="text" id="LeuteIschtuk" value="" />
+	<input type="text" id="GeldIschtuk" value="" />
+	<input type="text" id="NahrungIschtuk" value="" />
+	<div id="TaverneIschtukKnopf" onmousedown="TaverneIschtuk()"></div>
+	<div id="KontorIschtukKnopf" onmousedown="KontorIschtuk()"></div>
+	<div id="ExitIschtuk" onmousedown="ExitIschtuk()"></div>
+</div>
+<div id="TaverneIschtuk">
+<div id="TaverneIschtukAnheuern" onmousedown="AnheuernIschtuk()"></div>
+<div id="ExitTaverneIschtuk" onmousedown="ExitTaverneIschtuk()"></div>
+</div>
+<div id="KontorIschtuk">
+<div id="ExitKontorIschtukKnopf" onmousedown="ExitKontorIschtuk()"></div>
+<div id="KaufenKontorIschtukKnopf" onmousedown="KaufenKontorIschtuk()"></div>
+<div id="VerkaufenKontorIschtukKnopf" onmousedown="VerkaufenKontorIschtuk()"></div>
+</div>
+
+
+<div id="Ischtuk2">Ischtuk
+	<div id="HafenBildIschtuk2"></div>
+	<div id="Symbole2"></div>
+	<input type="text" id="LeuteIschtuk2" value="" />
+	<input type="text" id="GeldIschtuk2" value="" />
+	<input type="text" id="NahrungIschtuk2" value="" />
+	<div id="TaverneIschtuk2Knopf" onmousedown="TaverneIschtuk2()"></div>
+	<div id="KontorIschtuk2Knopf" onmousedown="KontorIschtuk2()"></div>
+	<div id="HafenIschtuk2Knopf" onmousedown="HafenIschtuk2()"></div>
+	<div id="ExitIschtuk2" onmousedown="ExitIschtuk2()"></div>
+</div>
+<div id="TaverneIschtuk2">
+	<div id="TaverneIschtuk2Anheuern" onmousedown="AnheuernIschtuk2()"></div>
+	<div id="ExitTaverneIschtuk2" onmousedown="ExitTaverneIschtuk2()"></div>
+</div>
+<div id="KontorIschtuk2">
+	<div id="ExitKontorIschtuk2Knopf" onmousedown="ExitKontorIschtuk2()"></div>
+	<div id="KaufenKontorIschtuk2Knopf" onmousedown="KaufenKontorIschtuk2()"></div>
+	<div id="VerkaufenKontorIschtuk2Knopf" onmousedown="VerkaufenKontorIschtuk2()"></div>
+</div>
+<div id="HafenIschtuk2">
+	<div id="ExitHafenIschtuk2Knopf" onmousedown="ExitHafenIschtuk2()"></div>
+	<div id="ReparierenHafenIschtuk2Knopf" onmousedown="ReparierenHafenIschtuk2()"></div>
+</div>
+
+<div id="Insel"></div>
+
+<div id="MyDiv" onmousedown="schiff1()">
+<img src="270Schiff.png" />
+</div>
+<div id="MyDiv2" onmousedown="schiff2()">
+<img src="270Schiff.png" />
+</div>
+<div id="KielWasser1" class="KielWasser"></div>
+<div id="KielWasser2" class="KielWasser"></div>
+<div id="KielWasser3" class="KielWasser"></div>
+<div id="KielWasser4" class="KielWasser"></div>
+<div id="KielWasser5" class="KielWasser"></div>
+<div id="KielWasser6" class="KielWasser"></div>
+<div id="KielWasser7" class="KielWasser"></div>
+<div id="KielWasser8" class="KielWasser"></div>
+<div id="KielWasserb1" class="KielWasser"></div>
+<div id="KielWasserb2" class="KielWasser"></div>
+<div id="KielWasserb3" class="KielWasser"></div>
+<div id="KielWasserb4" class="KielWasser"></div>
+<div id="KielWasserb5" class="KielWasser"></div>
+<div id="KielWasserb6" class="KielWasser"></div>
+<div id="KielWasserb7" class="KielWasser"></div>
+<div id="KielWasserb8" class="KielWasser"></div>
+
+<div id="WindHosenBild">
+<img src="0.gif" />
+</div>
+<div id="Kompass"></div>
+<div id="Log1" onmousedown="schiffZu1()">
+<input type="text" id="Leute1" value="0" />
+<input type="text" id="Geld1" value="0" />
+<input type="text" id="Nahrung1" value="0" />
+
+</div>
+<div id="Log2" onmousedown="schiffZu2()">
+<input type="text" id="Leute2" value="0" />
+<input type="text" id="Geld2" value="0" />
+<input type="text" id="Nahrung2" value="0" />
+</div>
+<div id="HaschJutti3000"><h3>Hasch Jutti     3000 c 2009</h3></div>
+<input type="text" id="bewegungsCounter" value="0" style="position:absolute;z-index:45;right:0;bottom:0;" />
+<input type="text" id="bewegungsCounter2" value="0" style="position:absolute;z-index:45;left:0;bottom:0;" />
+<input type="text" id="WindHose" value="0" style="position:absolute;z-index:45;left:0;top:300;" />
+<input type="text" id="WindRichtung" value="0" style="position:absolute;z-index:45;left:0;top:500;" />
+</BODY></html>

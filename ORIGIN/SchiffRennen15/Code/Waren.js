@@ -1,0 +1,13 @@
+Waren=function(){
+this.id;
+this.x;
+this.y;
+this.width;
+this.height;
+this.reputation;
+this.color;
+this.speedBoost;
+this.speedLimit;
+this.speed;
+this.movable;
+}

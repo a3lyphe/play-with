@@ -1,0 +1,3 @@
+MainSequenzer=function(){
+	MapScaler();
+}

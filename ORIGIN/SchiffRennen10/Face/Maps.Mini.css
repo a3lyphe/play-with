@@ -1,0 +1,16 @@
+div#theWelt {
+display:none;
+position:fixed;
+height:96px;
+width:256px;
+z-index:1000;
+bottom:10;
+left:10px;
+}
+canvas#theMapsBackGround{
+ position : absolute;
+ background-color:navy;
+}
+canvas#theMapsPlayGround{
+ position : absolute;
+}

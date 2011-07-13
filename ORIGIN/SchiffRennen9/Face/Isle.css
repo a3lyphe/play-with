@@ -1,0 +1,10 @@
+#Insel{
+visibility:visible;
+background-image:url('../Icon/Insel.png');
+position:absolute;
+z-index:1;
+left:300;
+top:300;
+height:200px;
+width:200px;
+}

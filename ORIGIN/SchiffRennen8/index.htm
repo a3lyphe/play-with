@@ -1,0 +1,552 @@
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+<title>Jurte523</title>
+<link rel="shortcut icon" type="image/x-icon" href="Last Reset Favicon.ico"/>
+<link rel="stylesheet" type="text/css" media="screen" href="style.css"/>
+<!--<link rel="stylesheet" type="text/css" media="screen" href="kanone.css"/>-->
+<link rel="stylesheet" type="text/css" media="screen" href="wolken.css"/>
+
+<script src="map.js" type="text/javascript"></script>
+<script src="excanvas.js" type="text/javascript"></script>
+<script src="script.js" type="text/javascript"></script>
+<script src="kanone.js" type="text/javascript"></script>
+<script src="wolken.js" type="text/javascript"></script>
+<!---->
+</head>
+<body onLoad="init(),Sequenzer(),Oberinit()">
+
+<div id="Welt" style="position:absolute;">
+
+<div id="Spieler">
+	<img id="MyDiv" style="z-index:1;" src="images/270Schiff.png" onmousedown="schiff1()"/>
+	<img id="MyDiv2" style="z-index:1;" src="images/270Schiff.png" onmousedown="schiff2()"/>
+</div>
+<div id="WindHosenBild">
+<img id="KompassNadel" src="images/0.gif"style="z-index:34;"/>
+</div>
+
+
+
+
+	<img id="Karte" src="images/Meer.png"/>
+	<img id="Insel" src="images/Insel.png"/>
+	<img id="KielWasser1" src="images/Kielwasser.png"/>
+	<img id="KielWasser2" src="images/Kielwasser.png"/>
+	<img id="KielWasser3" src="images/Kielwasser.png"/>
+	<img id="KielWasser4" src="images/Kielwasser.png"/>
+	<img id="KielWasser5" src="images/Kielwasser.png"/>
+	<img id="KielWasser6" src="images/Kielwasser.png"/>
+	<img id="KielWasser7" src="images/Kielwasser.png"/>
+	<img id="KielWasser8" src="images/Kielwasser.png"/>
+	<img id="KielWasser9" src="images/Kielwasser.png"/>
+	<img id="KielWasser10" src="images/Kielwasser.png"/>
+	<img id="KielWasser11" src="images/Kielwasser.png"/>
+	<img id="KielWasser12" src="images/Kielwasser.png"/>
+	<img id="KielWasser13" src="images/Kielwasser.png"/>
+	<img id="KielWasser14" src="images/Kielwasser.png"/>
+	<img id="KielWasser15" src="images/Kielwasser.png"/>
+	<img id="KielWasser16" src="images/Kielwasser.png"/>
+	<img id="KielWasser17" src="images/Kielwasser.png"/>
+	<img id="KielWasser18" src="images/Kielwasser.png"/>
+	<img id="KielWasser19" src="images/Kielwasser.png"/>
+	<img id="KielWasserb1" src="images/Kielwasser.png"/>
+	<img id="KielWasserb2" src="images/Kielwasser.png"/>
+	<img id="KielWasserb3" src="images/Kielwasser.png"/>
+	<img id="KielWasserb4" src="images/Kielwasser.png"/>
+	<img id="KielWasserb5" src="images/Kielwasser.png"/>
+	<img id="KielWasserb6" src="images/Kielwasser.png"/>
+	<img id="KielWasserb7" src="images/Kielwasser.png"/>
+	<img id="KielWasserb8" src="images/Kielwasser.png"/>
+	<img id="KielWasserb9" src="images/Kielwasser.png"/>
+	<img id="KielWasserb10" src="images/Kielwasser.png"/>
+	<img id="KielWasserb11" src="images/Kielwasser.png"/>
+	<img id="KielWasserb12" src="images/Kielwasser.png"/>
+	<img id="KielWasserb13" src="images/Kielwasser.png"/>
+	<img id="KielWasserb14" src="images/Kielwasser.png"/>
+	<img id="KielWasserb15" src="images/Kielwasser.png"/>
+	<img id="KielWasserb16" src="images/Kielwasser.png"/>
+	<img id="KielWasserb17" src="images/Kielwasser.png"/>
+	<img id="KielWasserb18" src="images/Kielwasser.png"/>
+	<img id="KielWasserb19" src="images/Kielwasser.png"/>
+	<img id="Kugel1" src="images/Kugel1.png"/>
+	<img id="Kugel2" src="images/Kugel1.png"/>
+	<img id="WasserEinschlag1" src="images/WasserEinschlag.png"/>
+	<img id="WasserEinschlagb1" src="images/WasserEinschlag.png"/>
+	<img id="WasserEinschlagb2" src="images/WasserEinschlag.png"/>
+	<img id="WasserEinschlagb3" src="images/WasserEinschlag.png"/>
+	<img id="WasserEinschlagb4" src="images/WasserEinschlag.png"/>
+	<img id="WasserEinschlagb5" src="images/WasserEinschlag.png"/>
+	<img id="WasserEinschlagb6" src="images/WasserEinschlag.png"/>
+	<img id="WasserEinschlagb7" src="images/WasserEinschlag.png"/>
+	<img id="WasserEinschlagb8" src="images/WasserEinschlag.png"/>
+	<img id="WasserEinschlagb9" src="images/WasserEinschlag.png"/>
+	<img id="Wolke1" style="opacity:0.37;background-color:transparent;" src="images/Wolke1.png"/>
+	<img id="Wolke2" style="opacity:0.37;background-color:transparent;" src="images/Wolke2.png"/>
+	<img id="Wolke3" style="opacity:0.37;background-color:transparent;" src="images/Wolke3.png"/>
+	<img id="GewitterWolke" style="opacity:0.37;background-color:transparent;" src="images/GewitterWolke.png"/>
+</div>
+
+<div id="minimapcontainer">
+<canvas id="minimap"></canvas>
+<canvas id="minimapobjects"></canvas>
+</div>
+
+
+
+
+<div id="Pirat1"></div>
+
+<div id="HavannaP1">HavannaP1
+	<div id="HavannaP1HafenBild"></div>
+	<div id="Symbole3"></div>
+	<input type="text" id="HavannaP1Leute" value=""/>
+	<input type="text" id="HavannaP1Geld" value=""/>
+	<input type="text" id="HavannaP1Nahrung" value=""/>
+	<div id="HavannaP1TaverneKnopf" onmousedown="HavannaP1Taverne()"></div>
+	<div id="HavannaP1Exit" onmousedown="HavannaP1Exit()"></div>
+	<div id="HavannaP1KontorKnopf" onmousedown="HavannaP1Kontor()"></div>
+	<div id="HavannaP1HafenKnopf" onmousedown="HavannaP1Hafen()"></div>
+
+<div id="HavannaP1Taverne">
+<div id="HavannaP1TaverneAnheuern" onmousedown="HavannaP1Anheuern()"></div>
+<div id="HavannaP1TaverneExit" onmousedown="HavannaP1TaverneExit()"></div>
+</div>
+<div id="HavannaP1Kontor">
+	<div id="HavannaP1KontorExitKnopf" onmousedown="HavannaP1KontorExit()"></div>
+	<div id="HavannaP1KontorKaufenKnopf" onmousedown="HavannaP1KontorKaufen()"></div>
+	<div id="HavannaP1KontorVerkaufenKnopf" onmousedown="HavannaP1KontorVerkaufen()"></div>
+</div>
+<div id="HavannaP1Hafen">
+	<div id="HavannaP1HafenExitKnopf" onmousedown="HavannaP1HafenExit()"></div>
+	<div id="HavannaP1HafenReparierenKnopf" onmousedown="HavannaP1HafenReparieren()"></div>
+</div>
+</div>
+<div id="HavannaP2">HavannaP2
+	<div id="HavannaP2HafenBild"></div>
+	<div id="Symbole4"></div>
+	<input type="text" id="HavannaP2Leute" value=""/>
+	<input type="text" id="HavannaP2Geld" value=""/>
+	<input type="text" id="HavannaP2Nahrung" value=""/>
+	<div id="HavannaP2TaverneKnopf" onmousedown="HavannaP2Taverne()"></div>
+	<div id="HavannaP2Exit" onmousedown="HavannaP2Exit()"></div>
+	<div id="HavannaP2KontorKnopf" onmousedown="HavannaP2Kontor()"></div>
+	<div id="HavannaP2HafenKnopf" onmousedown="HavannaP2Hafen()"></div>
+
+<div id="HavannaP2Taverne">
+<div id="HavannaP2TaverneAnheuern" onmousedown="HavannaP2Anheuern()"></div>
+<div id="HavannaP2TaverneExit" onmousedown="HavannaP2TaverneExit()"></div>
+</div>
+<div id="HavannaP2Kontor">
+	<div id="HavannaP2KontorExitKnopf" onmousedown="HavannaP2KontorExit()"></div>
+	<div id="HavannaP2KontorKaufenKnopf" onmousedown="HavannaP2KontorKaufen()"></div>
+	<div id="HavannaP2KontorVerkaufenKnopf" onmousedown="HavannaP2KontorVerkaufen()"></div>
+</div>
+<div id="HavannaP2Hafen">
+	<div id="HavannaP2HafenExitKnopf" onmousedown="HavannaP2HafenExit()"></div>
+	<div id="HavannaP2HafenReparierenKnopf" onmousedown="HavannaP2HafenReparieren()"></div>
+</div>
+</div>
+<div id="IschtukP1">IschtukP1
+	<div id="IschtukP1HafenBild"></div>
+	<div id="Symbole"></div>
+	<input type="text" id="IschtukP1Leute" value=""/>
+	<input type="text" id="IschtukP1Geld" value=""/>
+	<input type="text" id="IschtukP1Nahrung" value=""/>
+	<div id="IschtukP1TaverneKnopf" onmousedown="IschtukP1Taverne()"></div>
+	<div id="IschtukP1KontorKnopf" onmousedown="IschtukP1Kontor()"></div>
+	<div id="IschtukP1HafenKnopf" onmousedown="IschtukP1Hafen()"></div>
+	<div id="IschtukP1Exit" onmousedown="IschtukP1Exit()"></div>
+
+	<div id="IschtukP1Taverne">
+	<div id="IschtukP1TaverneAnheuern" onmousedown="IschtukP1Anheuern()"></div>
+	<div id="IschtukP1TaverneExit" onmousedown="IschtukP1TaverneExit()"></div>
+</div>
+	<div id="IschtukP1Kontor">
+	<div id="IschtukP1KontorExitKnopf" onmousedown="IschtukP1KontorExit()"></div>
+	<div id="IschtukP1KontorKaufenKnopf" onmousedown="IschtukP1KontorKaufen()"></div>
+	<div id="IschtukP1KontorVerkaufenKnopf" onmousedown="IschtukP1KontorVerkaufen()"></div>
+</div>
+<div id="IschtukP1Hafen">
+	<div id="IschtukP1HafenExitKnopf" onmousedown="IschtukP1HafenExit()"></div>
+	<div id="IschtukP1HafenReparierenKnopf" onmousedown="IschtukP1HafenReparieren()"></div>
+</div>
+</div>
+<div id="IschtukP2">IschtukP2
+	<div id="IschtukP2HafenBild"></div>
+	<div id="Symbole2"></div>
+	<input type="text" id="IschtukP2Leute" value=""/>
+	<input type="text" id="IschtukP2Geld" value=""/>
+	<input type="text" id="IschtukP2Nahrung" value=""/>
+	<div id="IschtukP2TaverneKnopf" onmousedown="IschtukP2Taverne()"></div>
+	<div id="IschtukP2KontorKnopf" onmousedown="IschtukP2Kontor()"></div>
+	<div id="IschtukP2HafenKnopf" onmousedown="IschtukP2Hafen()"></div>
+	<div id="IschtukP2GovernourKnopf" onmousedown="IschtukP2Governour()"></div>
+	<div id="IschtukP2Exit" onmousedown="IschtukP2Exit()"></div>
+
+<div id="IschtukP2Taverne">
+	
+	<div id="IschtukP2TaverneTheke"></div>
+	<div id="IschtukP2TaverneBarceeper" onmousedown="IschtukP2TaverneBarceeper()"></div>
+	<div id="IschtukP2TaverneLeute" onmousedown="IschtukP2Anheuern()"></div>
+	<div id="IschtukP2TaverneExit" onmousedown="IschtukP2TaverneExit()"></div>
+</div>
+<div id="IschtukP2Kontor">
+	<div id="IschtukP2KontorExitKnopf" onmousedown="IschtukP2KontorExit()"></div>
+	<div id="IschtukP2kontorbild" class="IschtukP2">
+	</button>
+	<button class="kaufen1" style="top:40;" id="IschtukP2KaffeeKaufen1" onMouseUp="kaufen('player2','IschtukP2Preise','Kaffee',1,1.002)">
+	</button>
+	<button class="kaufen1" style="top:60;" id="IschtukP2TabakKaufen1" onMouseUp="kaufen('player2','IschtukP2Preise','Tabak',1,1.002)">
+	</button>
+	<button class="kaufen1" style="top:80;" id="IschtukP2ZuckerrohrKaufen1" onMouseUp="kaufen('player2','IschtukP2Preise','Zuckerrohr',1,1.002)">
+	</button>
+	<button class="kaufen1" style="top:100;" id="IschtukP2RumKaufen1" onMouseUp="kaufen('player2','IschtukP2Preise','Rum',1,1.002)">
+	</button>
+	<button class="kaufen1" style="top:120;" id="IschtukP2BaumwolleKaufen1" onMouseUp="kaufen('player2','IschtukP2Preise','Baumwolle',1,1.002)">
+	</button>
+	<button class="kaufen1" style="top:140;" id="IschtukP2PerlenKaufen1" onMouseUp="kaufen('player2','IschtukP2Preise','Perlen',1,1.002)">
+	</button>
+	<button class="kaufen1" style="top:160;" id="IschtukP2SegeltuchKaufen1" onMouseUp="kaufen('player2','IschtukP2Preise','Segeltuch',1,1.002)">
+	</button>
+	<button class="kaufen1" style="top:180;" id="IschtukP2HanfKaufen1" onMouseUp="kaufen('player2','IschtukP2Preise','Hanf',1,1.002)">
+	</button>
+	<button class="kaufen1" style="top:200;" id="IschtukP2TeerKaufen1" onMouseUp="kaufen('player2','IschtukP2Preise','Teer',1,1.002)">
+	</button>
+	<button class="kaufen1" style="top:220;" id="IschtukP2HolzKaufen1" onMouseUp="kaufen('player2','IschtukP2Preise','Holz',1,1.002)">
+	</button>
+	<button class="kaufen1" style="top:240;" id="IschtukP2PulverKaufen1" onMouseUp="kaufen('player2','IschtukP2Preise','Pulver',1,1.002)">
+	</button>
+	<button class="kaufen1" style="top:260;" id="IschtukP2KugelnKaufen1" onMouseUp="kaufen('player2','IschtukP2Preise','Kugeln',1,1.002)">
+	</button>
+	<button class="kaufen1" style="top:280;" id="IschtukP2KanonenKaufen1" onMouseUp="kaufen('player2','IschtukP2Preise','Kanonen',1,1.002)">
+	</button>
+	<button class="kaufen1" style="top:300;" id="IschtukP2NahrungKaufen1" onMouseUp="kaufen('player2','IschtukP2Preise','Nahrung',1,1.002)">
+	</button>
+	
+	</button>
+	<button class="kaufen5" style="top:40;" id="IschtukP2KaffeeKaufen5" onMouseUp="kaufen('player2','IschtukP2Preise','Kaffee',5,1.01)">
+	</button>
+	<button class="kaufen5" style="top:60;" id="IschtukP2TabakKaufen5" onMouseUp="kaufen('player2','IschtukP2Preise','Tabak',5,1.01)">
+	</button>
+	<button class="kaufen5" style="top:80;" id="IschtukP2ZuckerrohrKaufen5" onMouseUp="kaufen('player2','IschtukP2Preise','Zuckerrohr',5,1.01)">
+	</button>
+	<button class="kaufen5" style="top:100;" id="IschtukP2RumKaufen5" onMouseUp="kaufen('player2','IschtukP2Preise','Rum',5,1.01)">
+	</button>
+	<button class="kaufen5" style="top:120;" id="IschtukP2BaumwolleKaufen5" onMouseUp="kaufen('player2','IschtukP2Preise','Baumwolle',5,1.01)">
+	</button>
+	<button class="kaufen5" style="top:140;" id="IschtukP2PerlenKaufen5" onMouseUp="kaufen('player2','IschtukP2Preise','Perlen',5,1.01)">
+	</button>
+	<button class="kaufen5" style="top:160;" id="IschtukP2SegeltuchKaufen5" onMouseUp="kaufen('player2','IschtukP2Preise','Segeltuch',5,1.01)">
+	</button>
+	<button class="kaufen5" style="top:180;" id="IschtukP2HanfKaufen5" onMouseUp="kaufen('player2','IschtukP2Preise','Hanf',5,1.01)">
+	</button>
+	<button class="kaufen5" style="top:200;" id="IschtukP2TeerKaufen5" onMouseUp="kaufen('player2','IschtukP2Preise','Teer',5,1.01)">
+	</button>
+	<button class="kaufen5" style="top:220;" id="IschtukP2HolzKaufen5" onMouseUp="kaufen('player2','IschtukP2Preise','Holz',5,1.01)">
+	</button>
+	<button class="kaufen5" style="top:240;" id="IschtukP2PulverKaufen5" onMouseUp="kaufen('player2','IschtukP2Preise','Pulver',5,1.01)">
+	</button>
+	<button class="kaufen5" style="top:260;" id="IschtukP2KugelnKaufen5" onMouseUp="kaufen('player2','IschtukP2Preise','Kugeln',5,1.01)">
+	</button>
+	<button class="kaufen5" style="top:280;" id="IschtukP2KanonenKaufen5" onMouseUp="kaufen('player2','IschtukP2Preise','Kanonen',5,1.01)">
+	</button>
+	<button class="kaufen5" style="top:300;" id="IschtukP2NahrungKaufen5" onMouseUp="kaufen('player2','IschtukP2Preise','Nahrung',5,1.01)">
+	</button>
+	
+
+	</button>
+	<button class="kaufen10" style="top:40;" id="IschtukP2KaffeeKaufen10" onMouseUp="kaufen('player2','IschtukP2Preise','Kaffee',10,1.02)">
+	</button>
+	<button class="kaufen10" style="top:60;" id="IschtukP2TabakKaufen10" onMouseUp="kaufen('player2','IschtukP2Preise','Tabak',10,1.02)">
+	</button>
+	<button class="kaufen10" style="top:80;" id="IschtukP2ZuckerrohrKaufen10" onMouseUp="kaufen('player2','IschtukP2Preise','Zuckerrohr',10,1.02)">
+	</button>
+	<button class="kaufen10" style="top:100;" id="IschtukP2RumKaufen10" onMouseUp="kaufen('player2','IschtukP2Preise','Rum',10,1.02)">
+	</button>
+	<button class="kaufen10" style="top:120;" id="IschtukP2BaumwolleKaufen10" onMouseUp="kaufen('player2','IschtukP2Preise','Baumwolle',10,1.02)">
+	</button>
+	<button class="kaufen10" style="top:140;" id="IschtukP2PerlenKaufen10" onMouseUp="kaufen('player2','IschtukP2Preise','Perlen',10,1.02)">
+	</button>
+	<button class="kaufen10" style="top:160;" id="IschtukP2SegeltuchKaufen10" onMouseUp="kaufen('player2','IschtukP2Preise','Segeltuch',10,1.02)">
+	</button>
+	<button class="kaufen10" style="top:180;" id="IschtukP2HanfKaufen10" onMouseUp="kaufen('player2','IschtukP2Preise','Hanf',10,1.02)">
+	</button>
+	<button class="kaufen10" style="top:200;" id="IschtukP2TeerKaufen10" onMouseUp="kaufen('player2','IschtukP2Preise','Teer',10,1.02)">
+	</button>
+	<button class="kaufen10" style="top:220;" id="IschtukP2HolzKaufen10" onMouseUp="kaufen('player2','IschtukP2Preise','Holz',10,1.02)">
+	</button>
+	<button class="kaufen10" style="top:240;" id="IschtukP2PulverKaufen10" onMouseUp="kaufen('player2','IschtukP2Preise','Pulver',10,1.02)">
+	</button>
+	<button class="kaufen10" style="top:260;" id="IschtukP2KugelnKaufen10" onMouseUp="kaufen('player2','IschtukP2Preise','Kugeln',10,1.02)">
+	</button>
+	<button class="kaufen10" style="top:280;" id="IschtukP2KanonenKaufen10" onMouseUp="kaufen('player2','IschtukP2Preise','Kanonen',10,1.02)">
+	</button>
+	<button class="kaufen10" style="top:300;" id="IschtukP2NahrungKaufen10" onMouseUp="kaufen('player2','IschtukP2Preise','Nahrung',10,1.02)">
+	</button>
+	
+	</button>
+	<button class="verkaufen1" style="top:40;" id="IschtukP2Kaffeeverkaufen1" onMouseUp="verkaufen('player2','IschtukP2Preise','Kaffee',1,.998)">
+	</button>
+	<button class="verkaufen1" style="top:60;" id="IschtukP2Tabakverkaufen1" onMouseUp="verkaufen('player2','IschtukP2Preise','Tabak',1,.998)">
+	</button>
+	<button class="verkaufen1" style="top:80;" id="IschtukP2Zuckerrohrverkaufen1" onMouseUp="verkaufen('player2','IschtukP2Preise','Zuckerrohr',1,.998)">
+	</button>
+	<button class="verkaufen1" style="top:100;" id="IschtukP2Rumverkaufen1" onMouseUp="verkaufen('player2','IschtukP2Preise','Rum',1,.998)">
+	</button>
+	<button class="verkaufen1" style="top:120;" id="IschtukP2Baumwolleverkaufen1" onMouseUp="verkaufen('player2','IschtukP2Preise','Baumwolle',1,.998)">
+	</button>
+	<button class="verkaufen1" style="top:140;" id="IschtukP2Perlenverkaufen1" onMouseUp="verkaufen('player2','IschtukP2Preise','Perlen',1,.998)">
+	</button>
+	<button class="verkaufen1" style="top:160;" id="IschtukP2Segeltuchverkaufen1" onMouseUp="verkaufen('player2','IschtukP2Preise','Segeltuch',1,.998)">
+	</button>
+	<button class="verkaufen1" style="top:180;" id="IschtukP2Hanfverkaufen1" onMouseUp="verkaufen('player2','IschtukP2Preise','Hanf',1,.998)">
+	</button>
+	<button class="verkaufen1" style="top:200;" id="IschtukP2Teerverkaufen1" onMouseUp="verkaufen('player2','IschtukP2Preise','Teer',1,.998)">
+	</button>
+	<button class="verkaufen1" style="top:220;" id="IschtukP2Holzverkaufen1" onMouseUp="verkaufen('player2','IschtukP2Preise','Holz',1,.998)">
+	</button>
+	<button class="verkaufen1" style="top:240;" id="IschtukP2Pulververkaufen1" onMouseUp="verkaufen('player2','IschtukP2Preise','Pulver',1,.998)">
+	</button>
+	<button class="verkaufen1" style="top:260;" id="IschtukP2Kugelnverkaufen1" onMouseUp="verkaufen('player2','IschtukP2Preise','Kugeln',1,.998)">
+	</button>
+	<button class="verkaufen1" style="top:280;" id="IschtukP2Kanonenverkaufen1" onMouseUp="verkaufen('player2','IschtukP2Preise','Kanonen',1,.998)">
+	</button>
+	<button class="verkaufen1" style="top:300;" id="IschtukP2Nahrungverkaufen1" onMouseUp="verkaufen('player2','IschtukP2Preise','Nahrung',1,.998)">
+	</button>
+	
+	</button>
+	<button class="verkaufen5" style="top:40;" id="IschtukP2Kaffeeverkaufen5" onMouseUp="verkaufen('player2','IschtukP2Preise','Kaffee',5,.99)">
+	</button>
+	<button class="verkaufen5" style="top:60;" id="IschtukP2Tabakverkaufen5" onMouseUp="verkaufen('player2','IschtukP2Preise','Tabak',5,.99)">
+	</button>
+	<button class="verkaufen5" style="top:80;" id="IschtukP2Zuckerrohrverkaufen5" onMouseUp="verkaufen('player2','IschtukP2Preise','Zuckerrohr',5,.99)">
+	</button>
+	<button class="verkaufen5" style="top:100;" id="IschtukP2Rumverkaufen5" onMouseUp="verkaufen('player2','IschtukP2Preise','Rum',5,.99)">
+	</button>
+	<button class="verkaufen5" style="top:120;" id="IschtukP2Baumwolleverkaufen5" onMouseUp="verkaufen('player2','IschtukP2Preise','Baumwolle',5,.99)">
+	</button>
+	<button class="verkaufen5" style="top:140;" id="IschtukP2Perlenverkaufen5" onMouseUp="verkaufen('player2','IschtukP2Preise','Perlen',5,.99)">
+	</button>
+	<button class="verkaufen5" style="top:160;" id="IschtukP2Segeltuchverkaufen5" onMouseUp="verkaufen('player2','IschtukP2Preise','Segeltuch',5,.99)">
+	</button>
+	<button class="verkaufen5" style="top:180;" id="IschtukP2Hanfverkaufen5" onMouseUp="verkaufen('player2','IschtukP2Preise','Hanf',5,.99)">
+	</button>
+	<button class="verkaufen5" style="top:200;" id="IschtukP2Teerverkaufen5" onMouseUp="verkaufen('player2','IschtukP2Preise','Teer',5,.99)">
+	</button>
+	<button class="verkaufen5" style="top:220;" id="IschtukP2Holzverkaufen5" onMouseUp="verkaufen('player2','IschtukP2Preise','Holz',5,.99)">
+	</button>
+	<button class="verkaufen5" style="top:240;" id="IschtukP2Pulververkaufen5" onMouseUp="verkaufen('player2','IschtukP2Preise','Pulver',5,.99)">
+	</button>
+	<button class="verkaufen5" style="top:260;" id="IschtukP2Kugelnverkaufen5" onMouseUp="verkaufen('player2','IschtukP2Preise','Kugeln',5,.99)">
+	</button>
+	<button class="verkaufen5" style="top:280;" id="IschtukP2Kanonenverkaufen5" onMouseUp="verkaufen('player2','IschtukP2Preise','Kanonen',5,.99)">
+	</button>
+	<button class="verkaufen5" style="top:300;" id="IschtukP2Nahrungverkaufen5" onMouseUp="verkaufen('player2','IschtukP2Preise','Nahrung',5,.99)">
+	</button>
+	
+
+	<button class="verkaufen10" style="top:40;" id="IschtukP2Kaffeeverkaufen10" onMouseUp="verkaufen('player2','IschtukP2Preise','Kaffee',10,.98)">
+	</button>
+	<button class="verkaufen10" style="top:60;" id="IschtukP2Tabakverkaufen10" onMouseUp="verkaufen('player2','IschtukP2Preise','Tabak',10,.98)">
+	</button>
+	<button class="verkaufen10" style="top:80;" id="IschtukP2Zuckerrohrverkaufen10" onMouseUp="verkaufen('player2','IschtukP2Preise','Zuckerrohr',10,.98)">
+	</button>
+	<button class="verkaufen10" style="top:100;" id="IschtukP2Rumverkaufen10" onMouseUp="verkaufen('player2','IschtukP2Preise','Rum',10,.98)">
+	</button>
+	<button class="verkaufen10" style="top:120;" id="IschtukP2Baumwolleverkaufen10" onMouseUp="verkaufen('player2','IschtukP2Preise','Baumwolle',10,.98)">
+	</button>
+	<button class="verkaufen10" style="top:140;" id="IschtukP2Perlenverkaufen10" onMouseUp="verkaufen('player2','IschtukP2Preise','Perlen',10,.98)">
+	</button>
+	<button class="verkaufen10" style="top:160;" id="IschtukP2Segeltuchverkaufen10" onMouseUp="verkaufen('player2','IschtukP2Preise','Segeltuch',10,.98)">
+	</button>
+	<button class="verkaufen10" style="top:180;" id="IschtukP2Hanfverkaufen10" onMouseUp="verkaufen('player2','IschtukP2Preise','Hanf',10,.98)">
+	</button>
+	<button class="verkaufen10" style="top:200;" id="IschtukP2Teerverkaufen10" onMouseUp="verkaufen('player2','IschtukP2Preise','Teer',10,.98)">
+	</button>
+	<button class="verkaufen10" style="top:220;" id="IschtukP2Holzverkaufen10" onMouseUp="verkaufen('player2','IschtukP2Preise','Holz',10,.98)">
+	</button>
+	<button class="verkaufen10" style="top:240;" id="IschtukP2Pulververkaufen10" onMouseUp="verkaufen('player2','IschtukP2Preise','Pulver',10,.98)">
+	</button>
+	<button class="verkaufen10" style="top:260;" id="IschtukP2Kugelnverkaufen10" onMouseUp="verkaufen('player2','IschtukP2Preise','Kugeln',10,.98)">
+	</button>
+	<button class="verkaufen10" style="top:280;" id="IschtukP2Kanonenverkaufen10" onMouseUp="verkaufen('player2','IschtukP2Preise','Kanonen',10,.98)">
+	</button>
+	<button class="verkaufen10" style="top:300;" id="IschtukP2Nahrungverkaufen10" onMouseUp="verkaufen('player2','IschtukP2Preise','Nahrung',10,.98)">
+	</button>
+
+
+	<button class="warenBild" style="top:40;background-image:url('images/Kaffee.png');" id="IschtukP2KaffeewarenBild" onMouseUp="verkaufen('IschtukP2Waren','IschtukP2Preise','Kaffee',10,.998)">
+	</button>
+	<button class="warenBild" style="top:60;background-image:url('images/Tabak.png');" id="IschtukP2TabakwarenBild" onMouseUp="verkaufen('IschtukP2Waren','IschtukP2Preise','Tabak',10,.998)">
+	</button>
+	<button class="warenBild" style="top:80;background-image:url('images/Zuckerrohr.png');" id="IschtukP2ZuckerrohrwarenBild" onMouseUp="verkaufen('IschtukP2Waren','IschtukP2Preise','Zuckerrohr',10,.998)">
+	</button>
+	<button class="warenBild" style="top:100;background-image:url('images/Rum.png');" id="IschtukP2RumwarenBild" onMouseUp="verkaufen('IschtukP2Waren','IschtukP2Preise','Rum',10,.998)">
+	</button>
+	<button class="warenBild" style="top:120;background-image:url('images/Baumwolle.png');" id="IschtukP2BaumwollewarenBild" onMouseUp="verkaufen('IschtukP2Waren','IschtukP2Preise','Baumwolle',10,.998)">
+	</button>
+	<button class="warenBild" style="top:140;background-image:url('images/Perlen.png');" id="IschtukP2PerlenwarenBild" onMouseUp="verkaufen('IschtukP2Waren','IschtukP2Preise','Perlen',10,.998)">
+	</button>
+	<button class="warenBild" style="top:160;background-image:url('images/Segeltuch.png');" id="IschtukP2SegeltuchwarenBild" onMouseUp="verkaufen('IschtukP2Waren','IschtukP2Preise','Segeltuch',10,.998)">
+	</button>
+	<button class="warenBild" style="top:180;background-image:url('images/Hanf.png');" id="IschtukP2HanfwarenBild" onMouseUp="verkaufen('IschtukP2Waren','IschtukP2Preise','Hanf',10,.998)">
+	</button>
+	<button class="warenBild" style="top:200;background-image:url('images/Teer.png');" id="IschtukP2TeerwarenBild" onMouseUp="verkaufen('IschtukP2Waren','IschtukP2Preise','Teer',10,.998)">
+	</button>
+	<button class="warenBild" style="top:220;background-image:url('images/Holz.png');" id="IschtukP2HolzwarenBild" onMouseUp="verkaufen('IschtukP2Waren','IschtukP2Preise','Holz',10,.998)">
+	</button>
+	<button class="warenBild" style="top:240;background-image:url('images/Pulver.png');" id="IschtukP2PulverwarenBild" onMouseUp="verkaufen('IschtukP2Waren','IschtukP2Preise','Pulver',10,.998)">
+	</button>
+	<button class="warenBild" style="top:260;background-image:url('images/Kugeln.png');" id="IschtukP2KugelnwarenBild" onMouseUp="verkaufen('IschtukP2Waren','IschtukP2Preise','Kugeln',10,.998)">
+	</button>
+	<button class="warenBild" style="top:280;background-image:url('images/Kanonen.png');" id="IschtukP2KanonenwarenBild" onMouseUp="verkaufen('IschtukP2Waren','IschtukP2Preise','Kanonen',10,.998)">
+	</button>
+	<button class="warenBild" style="top:300;background-image:url('images/Nahrung.png');" id="IschtukP2NahrungwarenBild" onMouseUp="verkaufen('IschtukP2Waren','IschtukP2Preise','Nahrung',10,.998)">
+	</button>
+
+	<div class="warenName" style="top:40;">Kaffeepreis.............</div>
+	<div class="warenName" style="top:60;">Tabakpreis..............</div>
+	<div class="warenName" style="top:80;">Zuckerrohrpreis....</div>
+	<div class="warenName" style="top:100;">Rumpreis...............</div>
+	<div class="warenName" style="top:120;">Baumwollpreis.....</div>
+	<div class="warenName" style="top:140;">Perlenpreis............</div>
+	<div class="warenName" style="top:160;">Segeltuchpreis......</div>
+	<div class="warenName" style="top:180;">Hanfpreis..............</div>
+	<div class="warenName" style="top:200;">Teerpreis..............</div>
+	<div class="warenName" style="top:220;">Holzpreis..............</div>
+	<div class="warenName" style="top:240;">Pulverpreis............</div>
+	<div class="warenName" style="top:260;">Kugelnpreis............</div>
+	<div class="warenName" style="top:280;">Kanonenpreis.........</div>
+	<div class="warenName" style="top:300;">Nahrungpreis.........</div>
+	<div  style="position:absolute;left:60;top:330;">Schiffskasse</div>
+	<div  style="position:absolute;left:60;top:350;">Schiffsladung</div>
+	
+	<input type="text" value='' class="warenMenge" id="player2KaffeeMenge" style="top:40;"/>
+	<input type="text" value='' class="warenMenge" id="player2TabakMenge" style="top:60;"/>
+	<input type="text" value='' class="warenMenge" id="player2ZuckerrohrMenge" style="top:80;"/>
+	<input type="text" value='' class="warenMenge" id="player2RumMenge" style="top:100;"/>
+	<input type="text" value='' class="warenMenge" id="player2BaumwolleMenge" style="top:120;"/>
+	<input type="text" value='' class="warenMenge" id="player2PerlenMenge" style="top:140;"/>
+	<input type="text" value='' class="warenMenge" id="player2SegeltuchMenge" style="top:160;"/>
+	<input type="text" value='' class="warenMenge" id="player2HanfMenge" style="top:180;"/>
+	<input type="text" value='' class="warenMenge" id="player2TeerMenge" style="top:200;"/>
+	<input type="text" value='' class="warenMenge" id="player2HolzMenge" style="top:220;"/>
+	<input type="text" value='' class="warenMenge" id="player2PulverMenge" style="top:240;"/>
+	<input type="text" value='' class="warenMenge" id="player2KugelnMenge" style="top:260;"/>
+	<input type="text" value='' class="warenMenge" id="player2KanonenMenge" style="top:280;"/>
+	<input type="text" value='' class="warenMenge" id="player2NahrungMenge" style="top:300;"/>
+	<input type="text" value='' style="position:absolute;background-color:transparent;border:transparent;top:330;left:150;" id="player2GeldMenge"/>
+	<input type="text" value='' style="position:absolute;background-color:transparent;border:transparent;top:350;left:150;" id="player2GesamtGewicht"/>
+	
+
+	<input type="text" value='' class="warenPreis" id="IschtukP2KaffeePreis" style="top:40;"/>
+	<input type="text" value='' class="warenPreis" id="IschtukP2TabakPreis" style="top:60;"/>
+	<input type="text" value='' class="warenPreis" id="IschtukP2ZuckerrohrPreis" style="top:80;"/>
+	<input type="text" value='' class="warenPreis" id="IschtukP2RumPreis" style="top:100;"/>
+	<input type="text" value='' class="warenPreis" id="IschtukP2BaumwollePreis" style="top:120;"/>
+	<input type="text" value='' class="warenPreis" id="IschtukP2PerlenPreis" style="top:140;"/>
+	<input type="text" value='' class="warenPreis" id="IschtukP2SegeltuchPreis" style="top:160;"/>
+	<input type="text" value='' class="warenPreis" id="IschtukP2HanfPreis" style="top:180;"/>
+	<input type="text" value='' class="warenPreis" id="IschtukP2TeerPreis" style="top:200;"/>
+	<input type="text" value='' class="warenPreis" id="IschtukP2HolzPreis" style="top:220;"/>
+	<input type="text" value='' class="warenPreis" id="IschtukP2PulverPreis" style="top:240;"/>
+	<input type="text" value='' class="warenPreis" id="IschtukP2KugelnPreis" style="top:260;"/>
+	<input type="text" value='' class="warenPreis" id="IschtukP2KanonenPreis" style="top:280;"/>
+	<input type="text" value='' class="warenPreis" id="IschtukP2NahrungPreis" style="top:300;"/>
+</div>
+	
+	
+</div>
+<div id="IschtukP2Hafen">
+	<div id="IschtukP2HafenExitKnopf" onmousedown="IschtukP2HafenExit()"></div>
+	<div id="IschtukP2HafenReparierenKnopf" onmousedown="IschtukP2HafenReparieren()"></div>
+</div>
+<div id="IschtukP2Governour">
+	<div id="IschtukP2GovernourExitKnopf" onmousedown="IschtukP2GovernourExit()"></div>
+	<div id="IschtukP2GovernourInfoKnopf" onmousedown="IschtukP2GovernourInfo()"></div>
+	<div id="IschtukP2GovernourHomeKnopf" onmousedown="IschtukP2GovernourHome()"></div>
+</div>
+</div>
+
+
+
+
+
+<div id="Kompass"></div>
+<div id="Log1" onmousedown="schiffZu1()">
+<input type="text" id="Leute1" value="0"/>
+<input type="text" id="Geld1" value="0"/>
+<input type="text" id="Nahrung1" value="0"/>
+
+
+
+</div>
+<div id="Log2" onmousedown="schiffZu2()">
+<input type="text" class="LogFeld" style="top:20" id="LogLeute" value="0"/>
+<input type="text" class="LogFeld" style="top:40" id="LogGeld" value="0"/>
+<input type="text" class="LogFeld" style="top:60" id="LogKaffee" value="0"/>
+<input type="text" class="LogFeld" style="top:80" id="LogTabak" value="0"/>
+<input type="text" class="LogFeld" style="top:100" id="LogZuckerrohr" value="0"/>
+<input type="text" class="LogFeld" style="top:120" id="LogRum" value="0"/>
+<input type="text" class="LogFeld" style="top:140" id="LogBaumwolle" value="0"/>
+<input type="text" class="LogFeld" style="top:160" id="LogPerlen" value="0"/>
+<input type="text" class="LogFeld" style="top:180" id="LogSegeltuch" value="0"/>
+<input type="text" class="LogFeld" style="top:200" id="LogHanf" value="0"/>
+<input type="text" class="LogFeld" style="top:220" id="LogTeer" value="0"/>
+<input type="text" class="LogFeld" style="top:240" id="LogHolz" value="0"/>
+<input type="text" class="LogFeld" style="top:260" id="LogPulver" value="0"/>
+<input type="text" class="LogFeld" style="top:280" id="LogKugeln" value="0"/>
+<input type="text" class="LogFeld" style="top:300" id="LogKanonen" value="0"/>
+<input type="text" class="LogFeld" style="top:320" id="LogNahrung" value="0"/>
+
+
+</button>
+
+	<button class="LogwarenBild" style="top:20;background-image:url('images/Leute.png');" id="IschtukP2KaffeewarenBild" onMouseOver="info('Kaffee')">
+	</button>
+	<button class="LogwarenBild" style="top:40;background-image:url('images/Geld.png');" id="IschtukP2KaffeewarenBild" onMouseOver="info('Kaffee')">
+	</button>
+	<button class="LogwarenBild" style="top:60;background-image:url('images/Kaffee.png');" id="IschtukP2KaffeewarenBild" onMouseOver="info('Kaffee')">
+	</button>
+	<button class="LogwarenBild" style="top:80;background-image:url('images/Tabak.png');" id="IschtukP2TabakwarenBild" onMouseOver="info('Tabak')">
+	</button>
+	<button class="LogwarenBild" style="top:100;background-image:url('images/Zuckerrohr.png');" id="IschtukP2ZuckerrohrwarenBild" onMouseOver="info('Zuckerrohr')">
+	</button>
+	<button class="LogwarenBild" style="top:120;background-image:url('images/Rum.png');" id="IschtukP2RumwarenBild" onMouseOver="info('Rum')">
+	</button>
+	<button class="LogwarenBild" style="top:140;background-image:url('images/Baumwolle.png');" id="IschtukP2BaumwollewarenBild" onMouseOver="info('Baumwolle')">
+	</button>
+	<button class="LogwarenBild" style="top:160;background-image:url('images/Perlen.png');" id="IschtukP2PerlenwarenBild" onMouseOver="info('Perlen')">
+	</button>
+	<button class="LogwarenBild" style="top:180;background-image:url('images/Segeltuch.png');" id="IschtukP2SegeltuchwarenBild" onMouseOver="info('Segeltuch')">
+	</button>
+	<button class="LogwarenBild" style="top:200;background-image:url('images/Hanf.png');" id="IschtukP2HanfwarenBild" onMouseOver="info('Hanf')">
+	</button>
+	<button class="LogwarenBild" style="top:220;background-image:url('images/Teer.png');" id="IschtukP2TeerwarenBild" onMouseOver="info('Teer')">
+	</button>
+	<button class="LogwarenBild" style="top:240;background-image:url('images/Holz.png');" id="IschtukP2HolzwarenBild" onMouseOver="info('Holz')">
+	</button>
+	<button class="LogwarenBild" style="top:260;background-image:url('images/Pulver.png');" id="IschtukP2PulverwarenBild" onMouseOver="info('Pulver')">
+	</button>
+	<button class="LogwarenBild" style="top:280;background-image:url('images/Kugeln.png');" id="IschtukP2KugelnwarenBild" onMouseOver="info('Kugeln')">
+	</button>
+	<button class="LogwarenBild" style="top:300;background-image:url('images/Kanonen.png');" id="IschtukP2KanonenwarenBild" onMouseOver="info('Kanonen')">
+	</button>
+	<button class="LogwarenBild" style="top:320;background-image:url('images/Nahrung.png');" id="IschtukP2NahrungwarenBild" onMouseOver="info('Nahrung')">
+	</button>
+
+</div>
+<div id="HaschJutti3000"><h3>Hasch Jutti     3000 c 2009</h3></div>
+<input type="text" id="bewegungsCounter" value="0"/>
+<input type="text" id="bewegungsCounter2" value="0"/>
+<input type="text" id="bewegungsCounter3" value="0"/>
+
+<object width="1" height="1">
+<param name="musik" value="sound/MEERSFX.swf">
+<embed src="sound/MEERSFX.swf" width="1" height="1">
+</embed>
+</object>
+
+</body>
+</html>

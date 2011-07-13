@@ -1,0 +1,6 @@
+#thePlayer{
+position:absolute;
+z-index:3;
+height:60px;
+width:60px;
+}
